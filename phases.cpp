@@ -6,8 +6,8 @@ using namespace std;
 
 // ----------------- phase 1 -----------------
 
-char phase_1_str[] = "This text introduced the main ideas in 2023csapp staffms by studying one operating system\0\0\0ics, line by line\0 Some code lines embody the essence of the main ideas\0 (e\0g\0, context switching, user/kernel boundary, locks, etc\0) and 2023ICS Computer science is not a boring subject\0, but a colorful world worth exploring with one's own hands.\0 Our Labs still have many flaws, but we hope that these Labs can be as challenging as games and help everyone truly master the basic skills needed to explore the computer world.\0 If it can stimulate interest in a certain field, it would be really great.\0Wishing all students success in the course!\0yyyyylxxxx\0";
-int phase_1_offset = 238;
+char phase_1_str[] = "In 2024, the rapid advancement of AI continues to reshape society, but it also raises growing concerns. AI systems are becoming increasingly autonomous, often outpacing regulatory frameworks and ethical guidelines. AI's unchecked growth risks losing human control\0, potentially leading to unintended consequences. There is also concern about the concentration of power in a few AI-driven entities, which could manipulate data and outcomes. The complexity and lack of transparency in AI decision-making further exacerbate these fears. While AI holds great potential, unchecked growth could disrupt society, economies, and democratic institutions. Now, more than ever, we must balance AI innovation with caution to ensure it benefits humanity rather than threatens it.";
+int phase_1_offset = 215;
 
 extern "C" bool string_not_equal(char* src, char* dest) {
     for(int i = 0; dest[i]; i++) {
@@ -18,7 +18,7 @@ extern "C" bool string_not_equal(char* src, char* dest) {
     return true;
 }
 
-void phase_1(char *input) {// ans: Computer science is not a boring subject
+void phase_1(char *input) {// ans: AI's unchecked growth risks losing human control
 
     char* answer = phase_1_str + phase_1_offset; 
     if (!string_not_equal(input, answer)) {
@@ -28,17 +28,16 @@ void phase_1(char *input) {// ans: Computer science is not a boring subject
 
 // ----------------- phase 2 -----------------
 
-#define BASE_IN_2 -4
-#define BASE_ADD_2 1
+#define BASE_IN_2 -10
+#define BASE_ADD_2 4
 
 struct {
     int nums[6] = {2, 4, 8, 16, 32, 64};
-    char is_pass_six = '\0'; // for secret phase
     int base = BASE_IN_2;
     int add_num = BASE_ADD_2;
 } phase_2_nums;
 
-void phase_2(char *input) {//ans: 1 -3 13 -51 205 -819, etc.
+void phase_2(char *input) {//ans: 1 -6 64 -636 6364 -63636
     read_six_numbers(input, phase_2_nums.nums); 
 
     int* nums = phase_2_nums.nums;
@@ -52,68 +51,71 @@ void phase_2(char *input) {//ans: 1 -3 13 -51 205 -819, etc.
 
 // ----------------- phase 3 -----------------
 
-void phase_3(char *input) {//ans: 1 1 o
-    int x, y;
-    char c, c_chk;
+void phase_3(char *input) {//ans: 0verf10w
+    int x, y, z, stage = 0;
+    char a, b, c, d, e;
     
-    int retval = sscanf(input, "%d %d %c", &x, &y, &c);
+    int retval = sscanf(input, "%d%c%c%c%c%d%d%c", &x, &a, &b, &c, &d, &y, &z, &e);
 
-    if (retval != 3) {
+    if (retval != 8) {
         explode_bomb();
     }
 
-    switch (x)
+    while(stage != 114514)
     {
-        case 1:
-            c_chk = 'o';
-            if (y != 1) 
-                explode_bomb();
-            break;
+        switch (stage)
+        {
+            case 0:
+                if (x != 0)
+                    explode_bomb();
+                stage = 1;
+                break;
 
-        case 2:
-            c_chk = 'v';
-            if (y != 3)
-                explode_bomb();
-            break;
+            case 1:
+                if (a != 'v')
+                    explode_bomb();
+                stage = 2;
+                break;
 
-        case 5:
-            c_chk = 'e';
-            if (y != 8)
-                explode_bomb();
-            break;
+            case 2:
+                if (b != 'e')
+                    explode_bomb();
+                stage = 3;
+                break;
 
-        case 13:
-            c_chk = 'r';
-            if (y != 21)
-                explode_bomb();
-            break;
+            case 3:
+                if (c != 'r')
+                    explode_bomb();
+                stage = 4;
+                break;
 
-        case 34:
-            c_chk = 'f';
-            if (y != 55)
-                explode_bomb();
-            break;
+            case 4:
+                if (d != 'f')
+                    explode_bomb();
+                stage = 5;
+                break;
 
-        case 89:
-            c_chk = 'l';
-            if (y != 144)
-                explode_bomb();
-            break;
+            case 5:
+                if (y != 1)
+                    explode_bomb();
+                stage = 6;
+                break;
 
-        case 233:
-            c_chk = 'o';
-            if (y != 377)
-                explode_bomb();
-            break;
-        
-        case 610:
-            c_chk = 'w';
-            if (y != 987)
-                explode_bomb();
-            break;
+            case 6:
+                if (z != 0)
+                    explode_bomb();
+                stage = 7;
+                break;
+            
+            case 7:
+                if (e != 'w')
+                    explode_bomb();
+                stage = 114514;
+                break;
 
-        default:
-            explode_bomb();
+            default:
+                explode_bomb();
+        }
     }
 
     if (c != c_chk)
@@ -162,13 +164,13 @@ public:
 
     virtual int dmail(int target) = 0;
 
-    int is_phase5_passable() { return divergence >= 1000000; }
+    int is_phase5_passable() { return divergence >= 100000; }
 };
 
 class worldline1 : public worldline
 {
     public:
-    worldline1() { divergence = 571024; }
+    worldline1() { divergence = 51024; }
     ~worldline1() {}
 
     int isWorldPeace() { return 0; }
@@ -182,7 +184,7 @@ class worldline1 : public worldline
 class worldline2 : public worldline
 {
     public:
-    worldline2() { divergence = 456914; }
+    worldline2() { divergence = 45614; }
     ~worldline2() {}
 
     int isWorldPeace() { return 1; }
@@ -196,7 +198,7 @@ class worldline2 : public worldline
 class worldline3 : public worldline
 {
     public:
-    worldline3() { divergence = 1123581;}
+    worldline3() { divergence = 114514;}
     ~worldline3() {}
 
     int isWorldPeace() { return 1; }

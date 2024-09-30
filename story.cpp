@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include "story.h"
+#include "utils.h"
+#include "phases.h"
+#include "phases.cpp"
 
 // Prologue for the game
 void display_prologue() {
@@ -15,14 +18,16 @@ void display_prologue() {
 // Small story snippets after each phase
 void display_phase_1_story() {
     printf("\n[Phase 1 Story]\n");
-    printf("You have defused the first part of the bomb. While inspecting the code, you notice some unusual comments left by the original designer.\n");
-    printf("Words like 'virus' and 'spread' appear in the comments, hinting at something deeper. But the rest is gibberish.\n\n");
+    printf("While inspecting the code, you notice some unusual comments left by the original designer.\n");
+    slow_put(phase_1_str);
+    slow_put(phase_1_str + phase_1_offset);
+    slow_put("\n");
 }
 
-void display_phase_2_story() {
-    printf("\n[Phase 2 Story]\n");
-    printf("Moving forward, you discover strange functions within the code with names like 'control' and 'explode'. It seems that the bomb is more complex than expected.\n\n");
-}
+// void display_phase_2_story() {
+//     printf("\n[Phase 2 Story]\n");
+//     printf("Moving forward, you discover strange functions within the code with names like 'control' and 'explode'. It seems that the bomb is more complex than expected.\n\n");
+// }
 
 void display_phase_3_story() {
     printf("\n[Phase 3 Story]\n");

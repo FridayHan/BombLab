@@ -51,7 +51,7 @@ int main()
 
     printf("Would you like to play in Story Mode? (y/n): ");
     mode_choice = getchar();
-    getchar(); // To consume the newline character
+    getchar();
 
     if (mode_choice == 'y' || mode_choice == 'Y')
         mode_choice = 1;
