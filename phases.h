@@ -1,0 +1,12 @@
+#if !defined(PHASES_H)
+#define PHASES_H
+
+extern "C" void phase_1(char *input);
+extern "C" void phase_2(char *input);
+extern "C" void phase_3(char *input);
+extern "C" void phase_4(char *input);
+extern "C" void phase_5(char *input);
+extern "C" void phase_6(char *input);
+extern "C" void secret_phase(char *input);
+
+#endif // PHASES_H
