@@ -66,16 +66,22 @@ void phase_3(char *input) {//ans: 0 v e r f 1 0 w
     {
         switch (stage)
         {
+            case 5201314:
+                if (d != 'f')
+                    explode_bomb();
+                stage = 66666;
+                break;
+            
+            case 23333:
+                if (z != 0)
+                    explode_bomb();
+                stage = 785234372;
+                break;
+
             case 0:
                 if (x != 0)
                     explode_bomb();
                 stage = 3329;
-                break;
-
-            case 3329:
-                if (a != 'v')
-                    explode_bomb();
-                stage = 5770713;
                 break;
 
             case 5770713:
@@ -84,34 +90,28 @@ void phase_3(char *input) {//ans: 0 v e r f 1 0 w
                 stage = 2330713;
                 break;
 
+            case 3329:
+                if (a != 'v')
+                    explode_bomb();
+                stage = 5770713;
+                break;
+    
+            case 785234372:
+                if (e != 'w')
+                    explode_bomb();
+                stage = 114514;
+                break;
+            
             case 2330713:
                 if (c != 'r')
                     explode_bomb();
                 stage = 5201314;
                 break;
 
-            case 5201314:
-                if (d != 'f')
-                    explode_bomb();
-                stage = 66666;
-                break;
-
             case 66666:
                 if (y != 1)
                     explode_bomb();
                 stage = 23333;
-                break;
-
-            case 23333:
-                if (z != 0)
-                    explode_bomb();
-                stage = 785234372;
-                break;
-            
-            case 785234372:
-                if (e != 'w')
-                    explode_bomb();
-                stage = 114514;
                 break;
 
             default:
