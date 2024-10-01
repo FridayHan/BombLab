@@ -143,7 +143,7 @@ void phase_4(char* input) { // ans 42949672961 ~ 42949672970
     n = (int)(num >> 32);           // n stands for the high 32 bits
     m = (int)(num & 0xffffffff);    // m stands for the low 32 bits
 
-    if ((n <= 0) | (n >= 0xb) | (m <= 0) | (m >= 0xb)) // 0 <= n, m <= 10
+    if ((n <= 0) | (n >= 0xb) | (m <= 0) | (m >= 0xb)) // need: 1 <= n, m <= 10
         explode_bomb();
     
     if (CIE(n) != 1073741824) // n != 10 (10 << 32 = 42949672960)
