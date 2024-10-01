@@ -124,28 +124,29 @@ void phase_3(char *input) {//ans: 0verf10w
 
 // ----------------- phase 4 -----------------
 
-#define POW_BASE 4
+#define POW_BASE 8
 
-static int hope(int n) {
+static int CIE(int n) {
     if(!n) return 1;
-    int half = hope(n >> 1);
+    int half = CIE(n >> 1);
     if (n & 1) return half * half * POW_BASE;
     else return half * half;
 }
 
-void phase_4(char* input) { // ans 51539607553 ~ 51539607566
-    int n, m, num;
+void phase_4(char* input) { // ans 42949672961 ~ 42949672970
+    long long num;
+    int n, m;
     
-    if (sscanf(input, "%d", &num) != 1)
+    if (sscanf(input, "%lld", &num) != 1)
         explode_bomb();
 
-    n = (int)(num >> 32);
-    m = (int)(num & 0xffffffff);
+    n = (int)(num >> 32);           // n stands for the high 32 bits
+    m = (int)(num & 0xffffffff);    // m stands for the low 32 bits
 
-    if ((n <= 0) | (n >= 0xf) | (m <= 0) | (m >= 0xf)) // consider this the ans is 51539607553
+    if ((n <= 0) | (n >= 0xb) | (m <= 0) | (m >= 0xb)) // 0 <= n, m <= 10
         explode_bomb();
     
-    if (hope(n) != 16777216) // n != 12 << 32 which is 51539607552
+    if (CIE(n) != 1073741824) // n != 10 (10 << 32 = 42949672960)
         explode_bomb();
 }
 
