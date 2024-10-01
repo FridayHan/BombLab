@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <stdio.h>
+#include <string.h>
 #include "utils.h"
 #include "phases.h"
 
@@ -6,7 +7,7 @@ using namespace std;
 
 // ----------------- phase 1 -----------------
 
-char phase_1_str[] = "In 2024, the rapid advancement of AI continues to reshape society, but it also raises growing concerns. AI systems are becoming increasingly autonomous, often outpacing regulatory frameworks and ethical guidelines. AI's unchecked growth risks losing human control\0, potentially leading to unintended consequences. There is also concern about the concentration of power in a few AI-driven entities, which could manipulate data and outcomes. The complexity and lack of transparency in AI decision-making further exacerbate these fears. While AI holds great potential, unchecked growth could disrupt society, economies, and democratic institutions. Now, more than ever, we must balance AI innovation with caution to ensure it benefits humanity rather than threatens it.";
+char phase_1_str[] = "In 2024, the rapid advancement of AI continues to reshape society, but it also raises growing concerns. AI systems are becoming increasingly autonomous, often outpacing regulatory frameworks and ethical guidelines. AI's unchecked growth risks losing human control\0, potentially leading to unintended consequences. There is also concern about the concentration of power in a few AI-driven entities, which could manipulate data and outcomes. Now, more than ever, we must balance AI innovation with caution to ensure it benefits humanity rather than threatens it. We must take action to \033[31mcontain AI\033[0m.";
 int phase_1_offset = 215;
 
 extern "C" bool string_not_equal(char* src, char* dest) {
@@ -51,11 +52,11 @@ void phase_2(char *input) {//ans: 1 -6 64 -636 6364 -63636
 
 // ----------------- phase 3 -----------------
 
-void phase_3(char *input) {//ans: 0verf10w
+void phase_3(char *input) {//ans: 0 v e r f 1 0 w
     int x, y, z, stage = 0;
     char a, b, c, d, e;
     
-    int retval = sscanf(input, "%d%c%c%c%c%d%d%c", &x, &a, &b, &c, &d, &y, &z, &e);
+    int retval = sscanf(input, "%d %c %c %c %c %d %d %c", &x, &a, &b, &c, &d, &y, &z, &e);
 
     if (retval != 8) {
         explode_bomb();
@@ -68,46 +69,46 @@ void phase_3(char *input) {//ans: 0verf10w
             case 0:
                 if (x != 0)
                     explode_bomb();
-                stage = 1;
+                stage = 3329;
                 break;
 
-            case 1:
+            case 3329:
                 if (a != 'v')
                     explode_bomb();
-                stage = 2;
+                stage = 5770713;
                 break;
 
-            case 2:
+            case 5770713:
                 if (b != 'e')
                     explode_bomb();
-                stage = 3;
+                stage = 2330713;
                 break;
 
-            case 3:
+            case 2330713:
                 if (c != 'r')
                     explode_bomb();
-                stage = 4;
+                stage = 5201314;
                 break;
 
-            case 4:
+            case 5201314:
                 if (d != 'f')
                     explode_bomb();
-                stage = 5;
+                stage = 66666;
                 break;
 
-            case 5:
+            case 66666:
                 if (y != 1)
                     explode_bomb();
-                stage = 6;
+                stage = 23333;
                 break;
 
-            case 6:
+            case 23333:
                 if (z != 0)
                     explode_bomb();
-                stage = 7;
+                stage = 785234372;
                 break;
             
-            case 7:
+            case 785234372:
                 if (e != 'w')
                     explode_bomb();
                 stage = 114514;
@@ -117,9 +118,6 @@ void phase_3(char *input) {//ans: 0verf10w
                 explode_bomb();
         }
     }
-
-    if (c != c_chk)
-        explode_bomb();
 }
 
 // ----------------- phase 4 -----------------
@@ -134,9 +132,9 @@ static int hope(int n) {
 }
 
 void phase_4(char* input) { // ans 51539607553 ~ 51539607566
-    int n, m, num;
+    long long  n, m, num;
     
-    if (sscanf(input, "%d", &num) != 1)
+    if (sscanf(input, "%lld", &num) != 1)
         explode_bomb();
 
     n = (int)(num >> 32);
@@ -210,7 +208,7 @@ class worldline3 : public worldline
 };
 
 void phase_5(char *input) {// ans: 冲冲冲~ 2023
-    worldline *tl;
+    worldline *tl = nullptr;
 
     char dmail[17];
     int target;

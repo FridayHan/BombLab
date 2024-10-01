@@ -25,7 +25,7 @@ void explode_bomb() {
 }
 
 // put a string to stdout, one character at a time, interval 0.1s
-void slow_put(char* str)
+void slow_put(const char* str)
 {
     while (*str != '\0')
     {
@@ -42,7 +42,7 @@ void slow_put(char* str)
     }
 }
 
-void slow_slow_put(char* str)
+void slow_slow_put(const char* str)
 {
     while (*str != '\0')
     {

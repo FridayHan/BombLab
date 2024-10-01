@@ -14,4 +14,4 @@ void display_ending();
 
 void display_secret_ending();
 
-#endif
+#endif // STORY_H

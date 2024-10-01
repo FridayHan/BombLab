@@ -29,7 +29,7 @@ void read_line(char* input)
 {
     char ch;
     int i;
-    for (i = 0; i <= 40; i++) {
+    for (i = 0; i <= 50; i++) {
         ch = getchar();
         if (ch == '\n') {
             input[i] = '\0';
@@ -45,67 +45,72 @@ void read_line(char* input)
 
 int main()
 {
-    char input[40];
+    char input[50];
     long secret_key = 0;
     char mode_choice = 0;
 
     printf("Would you like to play in Story Mode? (y/n): ");
     mode_choice = getchar();
     getchar();
-
     if (mode_choice == 'y' || mode_choice == 'Y')
         mode_choice = 1;
     else
         mode_choice = 0;
-
     if (mode_choice)
         display_prologue();
 
-    printf("You have 6 phases with which to blow yourself up. Have a nice day!\n");
+
+    printf("\033[34mYou have 6 phases with which to blow yourself up. Have a nice day!\n\033[0m");
+
 
     read_line(input);
     phase_1(input);
-    puts("Phase 1 defused. How about the next one?");
     if (mode_choice)
         display_phase_1_story();
+    printf("%ld", secret_key);
+    puts("\033[34mPhase 1 defused. How about the next one?\033[0m");
+
 
     read_line(input);
     phase_2(input);
-    puts("That's number 2. Keep going!");
-    if (mode_choice)
-        display_phase_2_story();
+    puts("\033[34mThat's number 2. Keep going!\033[0m");
+    // if (mode_choice)
+    //     display_phase_2_story();
+
 
     read_line(input);
     phase_3(input);
-    puts("Halfway there!");
-    if (mode_choice)
-        display_phase_3_story();
+    puts("\033[34mHalfway there!\033[0m");
+    // if (mode_choice)
+    //     display_phase_3_story();
 
     read_line(input);
     phase_4(input);
-    puts("So you got that one. Try this one.");
+    puts("\033[34mSo you got that one. Try this one.\033[0m");
     if (mode_choice)
         display_phase_4_story();
 
+
     read_line(input);
     phase_5(input);
-    puts("Good work! On to the next...");
+    puts("\033[34mGood work! On to the next...\033[0m");
     if (mode_choice)
         display_phase_5_story();
 
+
     read_line(input);
     phase_6(input);
-    puts("Cool! your skill on Reverse Engineer is great.");
+    puts("\033[34mCool! your skill on Reverse Engineer is great.\033[0m");
     if (mode_choice)
         display_phase_6_story();
 
-    puts("Congratulations!");
 
-    /* Note to self: The secret key should be zero when release! */
+    puts("\033[34mCongratulations!\n\033[0m");
+
+
+
     if (secret_key) {
-        /* The code shouldn't go here */
-
-        slow_put("Welcome to the secret phase of Bomb+!\n");
+        slow_put("\033[34mWelcome to the secret phase of Bomb+!\n\033[0m");
         slow_put("It is called");
         slow_slow_put("... THE STEINS;GATE\n");
 

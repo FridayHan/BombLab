@@ -2,26 +2,26 @@
 #include "story.h"
 #include "utils.h"
 #include "phases.h"
-#include "phases.cpp"
+// #include "phases.cpp"
 
 // Prologue for the game
 void display_prologue() {
-    printf("\n*** Story Mode Activated ***\n");
-    printf("Year 2035. AI has deeply infiltrated all aspects of human life, with every device controlled by the Central Intelligence Entity (CIE).\n");
-    printf("One day, as one of the world's top scientists, you receive a dire message from the CIE. The system's core code hides a 'bomb,'\n");
-    printf("a virus planted by the 'evil' original designer. This bomb has spread to every AI device, and will detonate in 14 days, causing global chaos.\n");
-    printf("You will be sent back to 2024 to stop this when the first AI device is created (with the virus). Your task: defuse the bomb from the infected AI device by tackling low-level assembly code.\n");
-    printf("But beware... uploading any data to AI systems in 2024 is forbidden, as the bomb could spread further.\n");
+    printf("\033[33m\n*** Story Mode Activated ***\n\033[0m");
+    printf("Year 2035. AI has deeply infiltrated all aspects of human life, with every device controlled by the \033[32mCentral Intelligence Entity (CIE)\033[0m.");
+    printf("One day, as one of the world's top scientists, you receive a dire message from the CIE. The system's core code hides a 'bomb', ");
+    printf("a virus planted by the 'evil' original designer. This bomb has spread to every AI device, and will detonate in \033[34m14 days\033[0m, causing global chaos.");
+    printf("You will be sent back to 2024 to stop this when the first AI device is created (with the virus). Your task: defuse the bomb from the infected AI device by tackling low-level assembly code.");
+    printf("\033[31mBut beware... uploading any data to AI systems in 2024 is forbidden, as the bomb could spread further.\033[0m");
     printf("Get ready, brave scientist...\n\n");
 }
 
 // Small story snippets after each phase
 void display_phase_1_story() {
-    printf("\n[Phase 1 Story]\n");
+    printf("\033[33m\n[Phase 1 Story]\n\033[0m");
     printf("While inspecting the code, you notice some unusual comments left by the original designer.\n");
-    slow_put(phase_1_str);
-    slow_put(phase_1_str + phase_1_offset);
-    slow_put("\n");
+    printf("%s", phase_1_str);
+    printf("%s", phase_1_str + phase_1_offset + 49);
+    printf("\n\n");
 }
 
 // void display_phase_2_story() {
@@ -30,7 +30,7 @@ void display_phase_1_story() {
 // }
 
 void display_phase_3_story() {
-    printf("\n[Phase 3 Story]\n");
+    printf("\033[33m\n[Phase 3 Story]\n\033[0m");
     printf("You find a suspicious string embedded in the code that expresses concerns about the rapid development of AI technology. The designer may have left warnings.\n\n");
 }
 
