@@ -19,7 +19,7 @@ extern "C" bool string_not_equal(char* src, char* dest) {
     return true;
 }
 
-void phase_1(char *input) {// ans: AI's unchecked growth risks losing human control
+void phase_1(char *input) { // ans: AI's unchecked growth risks losing human control
 
     char* answer = phase_1_str + phase_1_offset; 
     if (!string_not_equal(input, answer)) {
@@ -38,7 +38,7 @@ struct {
     int add_num = BASE_ADD_2;
 } phase_2_nums;
 
-void phase_2(char *input) {//ans: 1 -6 64 -636 6364 -63636
+void phase_2(char *input) { // ans: 1 -6 64 -636 6364 -63636
     read_six_numbers(input, phase_2_nums.nums); 
 
     int* nums = phase_2_nums.nums;
@@ -52,7 +52,7 @@ void phase_2(char *input) {//ans: 1 -6 64 -636 6364 -63636
 
 // ----------------- phase 3 -----------------
 
-void phase_3(char *input) {//ans: 0 v e r f 1 0 w
+void phase_3(char *input) { // ans: 0 v e r f 1 0 w
     int x, y, z, stage = 0;
     char a, b, c, d, e;
     
@@ -150,84 +150,79 @@ void phase_4(char* input) { // ans 42949672961 ~ 42949672970
 
 // ----------------- phase 5 -----------------
 
-class worldline
-{
+class AIRegulator {
 protected:
-    long divergence;
+    int restrictionWeight = 0;
 public:
-    worldline() {}
-    ~worldline() {}
+    AIRegulator() {}
+    ~AIRegulator() {}
 
-    virtual int isWorldPeace() = 0;     // only for distraction
-    virtual int isEveryoneEqual() = 0;  // only for distraction
+    virtual int imposeLimit() = 0;
+    virtual int enforcePenalty() = 0;
+    virtual int triggerIntervention(int year) = 0;
 
-    virtual int dmail(int target) = 0;
-
-    int is_phase5_passable() { return divergence >= 100000; }
+    int is_phase5_passable() { return restrictionWeight >= 75; }
 };
 
-class worldline1 : public worldline
-{
-    public:
-    worldline1() { divergence = 51024; }
-    ~worldline1() {}
+class AIBehaviorRegulator : public AIRegulator {
+public:
+    AIBehaviorRegulator() { restrictionWeight = 50; }
+    ~AIBehaviorRegulator() {}
 
-    int isWorldPeace() { return 0; }
-    int isEveryoneEqual() { return 1; }
+    int imposeLimit() { return 0x10; }
+    int enforcePenalty() { return 0x10; }
 
-    int dmail(int target) {
-        return target == 2018;
+    int triggerIntervention(int year) {
+        return year == 2027;
     }
 };
 
-class worldline2 : public worldline
-{
-    public:
-    worldline2() { divergence = 45614; }
-    ~worldline2() {}
+class AIEthicsRegulator : public AIRegulator {
+public:
+    AIEthicsRegulator() { restrictionWeight = 70; }
+    ~AIEthicsRegulator() {}
 
-    int isWorldPeace() { return 1; }
-    int isEveryoneEqual() { return 0; }
+    int imposeLimit() { return 0x1; }
+    int enforcePenalty() { return 0x1000; }
 
-    int dmail(int target) {
-        return target == 2021;
+    int triggerIntervention(int year) {
+        return year == 2030;
     }
 };
 
-class worldline3 : public worldline
-{
-    public:
-    worldline3() { divergence = 114514;}
-    ~worldline3() {}
+class AIGrowthRegulator : public AIRegulator {
+public:
+    AIGrowthRegulator() { restrictionWeight = 90; }
+    ~AIGrowthRegulator() {}
 
-    int isWorldPeace() { return 1; }
-    int isEveryoneEqual() { return 1; }
+    int imposeLimit() { return 0x100; }
+    int enforcePenalty() { return 0x100; }
 
-    int dmail(int target) {
-        return target == 2023;
+    int triggerIntervention(int year) {
+        return year == 2034;
     }
 };
 
-void phase_5(char *input) {// ans: 冲冲冲~ 2023
-    worldline *tl = nullptr;
+void phase_5(char* input) { // ans: growth 2034
+    AIRegulator *regulator = nullptr;
 
-    char dmail[17];
-    int target;
+    char regulation[15];
+    int year;
 
-    if (sscanf(input, "%s %d", dmail, &target) != 2)
+    if (sscanf(input, "%s %d", regulation, &year) != 2)
         explode_bomb();
 
-    if (strcmp(dmail, "杀杀杀！") == 0) {
-        tl = new worldline1();
-    } else if (strcmp(dmail, "退退退。") == 0) {
-        tl = new worldline2();
-    } else if (strcmp(dmail, "冲冲冲~") == 0) {
-        tl = new worldline3();
+    if (strcmp(regulation, "behavior") == 0) {
+        regulator = new AIBehaviorRegulator();
+    } else if (strcmp(regulation, "ethics") == 0) {
+        regulator = new AIEthicsRegulator();
+    } else if (strcmp(regulation, "growth") == 0) {
+        regulator = new AIGrowthRegulator();
     } else {
         explode_bomb();
     }
 
-    if (!tl->dmail(target) || !tl->is_phase5_passable())
+    if (!regulator->triggerIntervention(year) || !regulator->is_phase5_passable())
         explode_bomb();
 }
 
