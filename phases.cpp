@@ -12,7 +12,7 @@ using namespace std;
 // ----------------- phase 0 -----------------
 int ID_hash = 0;
 
-void phase_0(char *input) {
+void phase_0(std::string input) {
     const string student_id = (string)input;
     EVP_MD_CTX* context = EVP_MD_CTX_new();
     const EVP_MD* md = EVP_sha256();
@@ -193,7 +193,7 @@ public:
     virtual int enforcePenalty() = 0;
     virtual int triggerIntervention(int year) = 0;
 
-    int is_phase5_passable() { return restrictionWeight >= 75 && you == ID_hash; }
+    int is_phase5_passable(int id_hashed) { return restrictionWeight >= 75 && id_hashed == ID_hash; }
 };
 
 class AIBehaviorRegulator : public AIRegulator {
@@ -240,9 +240,9 @@ void phase_5(char* input) { // ans: growth 2034 <ID_hash>
 
     char regulation[15];
     int year;
-    int id;
+    int id_hashed;
 
-    if (sscanf(input, "%s %d %s", regulation, &year, &id) != 3)
+    if (sscanf(input, "%s %d %d", regulation, &year, &id_hashed) != 3)
         explode_bomb();
 
     if (strcmp(regulation, "behavior") == 0) {
@@ -255,7 +255,7 @@ void phase_5(char* input) { // ans: growth 2034 <ID_hash>
         explode_bomb();
     }
 
-    if (!regulator->triggerIntervention(year) || !regulator->is_phase5_passable())
+    if (!regulator->triggerIntervention(year) || !regulator->is_phase5_passable(id_hashed))
         explode_bomb();
 }
 

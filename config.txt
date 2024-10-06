@@ -1,0 +1,4 @@
+# config.txt
+jump_mode = false
+story_mode = false
+student_id = 2330713xxxx

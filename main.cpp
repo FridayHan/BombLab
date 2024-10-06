@@ -15,6 +15,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <map>
+#include <fstream>
 #include "utils.h"
 #include "phases.h"
 #include "story.h"
@@ -43,31 +45,32 @@ void read_line(char* input)
     while (getchar() != '\n'); // clear the input buffer
 }
 
+std::map<std::string, std::string> readConfig(const std::string& filename);
+
 int main()
 {
     char input[50];
     long secret_key = 0;
-    char mode_choice = 0;
 
-    printf("\033[34mPlease input your Student ID (23307xxxxxx).\nCaution: Different Student ID will generate different answer. Therefore, do not try getting others' answers.\033[0m\n");
-    read_line(input);
-    phase_0(input);
 
-    printf("\033[34mWould you like to play in Story Mode? (y/n): \033[0m");
-    mode_choice = getchar();
-    getchar();
-    if (mode_choice == 'y' || mode_choice == 'Y')
-        mode_choice = 1;
-    else
-        mode_choice = 0;
-    if (mode_choice)
+    // configure
+    std::map<std::string, std::string> config = readConfig("config.txt");
+    bool jumpMode = (config["jump_mode"] == "true");
+    bool storyMode = (config["story_mode"] == "true");
+    std::string studentID = config["student_id"];
+
+    printf("\033[34mPlease enter your Student ID (23307xxxxxx) in the config.txt file.\n"
+       "Note: Different Student IDs will generate different answers. Therefore, do not attempt to use someone else's ID for the answers.\033[0m\n");
+    phase_0(studentID);
+
+    if (storyMode)
         display_prologue();
 
     printf("\033[34mYou have 6 phases with which to blow yourself up. Have a nice day!\033[0m\n");
 
     read_line(input);
     phase_1(input);
-    if (mode_choice)
+    if (storyMode)
         display_phase_1_story();
     puts("\033[34mPhase 1 defused. How about the next one?\033[0m\n");
 
@@ -75,34 +78,34 @@ int main()
     read_line(input);
     phase_2(input);
     puts("\033[34mThat's number 2. Keep going!\033[0m\n");
-    // if (mode_choice)
+    // if (storyMode)
     //     display_phase_2_story();
 
 
     read_line(input);
     phase_3(input);
     puts("\033[34mHalfway there!\033[0m\n");
-    // if (mode_choice)
+    // if (storyMode)
     //     display_phase_3_story();
 
     read_line(input);
     phase_4(input);
     puts("\033[34mSo you got that one. Try this one.\033[0m\n");
-    if (mode_choice)
+    if (storyMode)
         display_phase_4_story();
 
 
     read_line(input);
     phase_5(input);
     puts("\033[34mGood work! On to the next...\033[0m\n");
-    if (mode_choice)
+    if (storyMode)
         display_phase_5_story();
 
 
     read_line(input);
     phase_6(input);
     puts("\033[34mCool! your skill on Reverse Engineer is great.\033[0m\n");
-    if (mode_choice)
+    if (storyMode)
         display_phase_6_story();
 
 
@@ -123,4 +126,33 @@ int main()
     }
 
     return 0;
+}
+
+std::map<std::string, std::string> readConfig(const std::string& filename)
+{
+    std::ifstream configFile(filename);
+    std::map<std::string, std::string> config;
+    std::string line;
+
+    if (configFile.is_open()) {
+        while (std::getline(configFile, line)) {
+            if (line.empty() || line[0] == '#') continue;
+
+            size_t delimiterPos = line.find("=");
+            std::string key = line.substr(0, delimiterPos);
+            std::string value = line.substr(delimiterPos + 1);
+
+            key.erase(0, key.find_first_not_of(" \t"));
+            key.erase(key.find_last_not_of(" \t") + 1);
+            value.erase(0, value.find_first_not_of(" \t"));
+            value.erase(value.find_last_not_of(" \t") + 1);
+
+            config[key] = value;
+        }
+        configFile.close();
+    } else {
+        printf("Unable to open config file: %s", filename);
+    }
+
+    return config;
 }
