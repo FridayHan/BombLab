@@ -274,7 +274,7 @@ struct node {
     struct node *next;
 };
 
-node stackBottom = {3, nullptr, nullptr};
+node stackBottom = {4, nullptr, nullptr};
 node stackTop = {0, nullptr, nullptr};
 
 node initialNodes[STACK_SIZE] = {
@@ -317,7 +317,7 @@ extern "C" bool check_answer() {
 }
 
 extern "C" bool maintain_monotonic_sequence(node* ptr, int val) {
-    if (stackBottom.val > val) { // val needs to be larger than stackBottom.val(5)
+    if (stackBottom.val > val) { // val needs to be larger than stackBottom.val(3)
         return false;
     }
     while (ptr != &stackBottom || ptr->val > val) {
@@ -327,7 +327,7 @@ extern "C" bool maintain_monotonic_sequence(node* ptr, int val) {
     return true;
 }
 
-void phase_6(char* input) { // ans: 5 6 6 4 4 6
+void phase_6(char* input) { // ans: 4 4 4 4 4 4 (or any increasing sequence with the first element >= 4)
     read_six_numbers(input, phase_6_nums.nums);
     printf("Valid Input\n");
     int* nums = phase_6_nums.nums;
