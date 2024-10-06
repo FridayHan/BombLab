@@ -193,7 +193,7 @@ public:
     virtual int enforcePenalty() = 0;
     virtual int triggerIntervention(int year) = 0;
 
-    int is_phase5_passable() { return restrictionWeight >= 75; }
+    int is_phase5_passable() { return restrictionWeight >= 75 && you == ID_hash; }
 };
 
 class AIBehaviorRegulator : public AIRegulator {
@@ -235,13 +235,14 @@ public:
     }
 };
 
-void phase_5(char* input) { // ans: growth 2034
+void phase_5(char* input) { // ans: growth 2034 <ID_hash>
     AIRegulator *regulator = nullptr;
 
     char regulation[15];
     int year;
+    int id;
 
-    if (sscanf(input, "%s %d", regulation, &year) != 2)
+    if (sscanf(input, "%s %d %s", regulation, &year, &id) != 3)
         explode_bomb();
 
     if (strcmp(regulation, "behavior") == 0) {
