@@ -57,7 +57,7 @@ void phase_1(char *input) { // ans: AI's unchecked growth risks losing human con
 // ----------------- phase 2 -----------------
 
 #define BASE_IN_2 -10
-#define BASE_ADD_2 4
+#define BASE_ADD_2 (ID_hash % 4 + 1)
 
 struct {
     int nums[6] = {2, 4, 8, 16, 32, 64};
@@ -89,56 +89,56 @@ void phase_3(char *input) { // ans: 0 v e r f 1 0 w
         explode_bomb();
     }
 
-    while(stage != 114514)
+    while(stage != 3)
     {
         switch (stage)
         {
-            case 5201314:
+            case 7:
                 if (d != 'f')
                     explode_bomb();
-                stage = 66666;
+                stage = 2;
                 break;
             
-            case 23333:
+            case 1:
                 if (z != 0)
                     explode_bomb();
-                stage = 785234372;
+                stage = 5;
                 break;
 
             case 0:
                 if (x != 0)
                     explode_bomb();
-                stage = 3329;
+                stage = 9;
                 break;
 
-            case 5770713:
+            case 8:
                 if (b != 'e')
                     explode_bomb();
-                stage = 2330713;
+                stage = 6;
                 break;
 
-            case 3329:
+            case 9:
                 if (a != 'v')
                     explode_bomb();
-                stage = 5770713;
+                stage = 8;
                 break;
     
-            case 785234372:
+            case 5:
                 if (e != 'w')
                     explode_bomb();
-                stage = 114514;
+                stage = 3;
                 break;
             
-            case 2330713:
+            case 6:
                 if (c != 'r')
                     explode_bomb();
-                stage = 5201314;
+                stage = 7;
                 break;
 
-            case 66666:
+            case 2:
                 if (y != 1)
                     explode_bomb();
-                stage = 23333;
+                stage = 1;
                 break;
             
             case 53535:
@@ -193,7 +193,7 @@ public:
     virtual int enforcePenalty() = 0;
     virtual int triggerIntervention(int year) = 0;
 
-    int is_phase5_passable(int id_hashed) { return restrictionWeight >= 75 && id_hashed == ID_hash; }
+    int is_phase5_passable(int id_hashed) { return restrictionWeight >= 75 && id_hashed == ID_hash % 0x1000; }
 };
 
 class AIBehaviorRegulator : public AIRegulator {
@@ -235,14 +235,14 @@ public:
     }
 };
 
-void phase_5(char* input) { // ans: growth 2034 <ID_hash>
+void phase_5(char* input) { // ans: growth 2034 (<ID_hash> % 1000)
     AIRegulator *regulator = nullptr;
 
     char regulation[15];
     int year;
     int id_hashed;
 
-    if (sscanf(input, "%s %d %d", regulation, &year, &id_hashed) != 3)
+    if (sscanf(input, "%s %d %x", regulation, &year, &id_hashed) != 3)
         explode_bomb();
 
     if (strcmp(regulation, "behavior") == 0) {
