@@ -1,9 +1,33 @@
 #include <stdio.h>
 #include <string.h>
+#include <openssl/evp.h> 
+#include <iomanip>
+#include <sstream>
 #include "utils.h"
 #include "phases.h"
 
 using namespace std;
+
+// ----------------- phase 0 -----------------
+std::string ID_hex;
+
+void phase_0(char *input) {
+    const string student_id = (string)input;
+    EVP_MD_CTX* context = EVP_MD_CTX_new();
+    const EVP_MD* md = EVP_sha256();
+    unsigned char hash[EVP_MAX_MD_SIZE];
+    unsigned int lengthOfHash = 0;
+    EVP_DigestInit_ex(context, md, nullptr);
+    EVP_DigestUpdate(context, student_id.c_str(), student_id.size());
+    EVP_DigestFinal_ex(context, hash, &lengthOfHash);
+    EVP_MD_CTX_free(context);
+
+    stringstream ss;
+    for (size_t i = 0; i < lengthOfHash; ++i) {
+        ss << hex << setw(2) << setfill('0') << static_cast<int>(hash[i]);
+    }
+    ID_hex = ss.str();
+}
 
 // ----------------- phase 1 -----------------
 
@@ -113,6 +137,11 @@ void phase_3(char *input) {//ans: 0 v e r f 1 0 w
                     explode_bomb();
                 stage = 23333;
                 break;
+            
+            case 53535:
+                if (y != 3)
+                    explode_bomb();
+                stage = 32222;
 
             default:
                 explode_bomb();
@@ -251,8 +280,8 @@ node initialNodes[QUEUE_SIZE] = {
         {10, &initialNodes[3]}, //1  
         {50, &initialNodes[1]}, //2  
         {30, &initialNodes[4]}, //3  
-        {20, &initialNodes[0]}, //4    
-        {40, &initialNodes[2]}  //5   
+        {20, &initialNodes[0]}, //4  
+        {40, &initialNodes[2]}  //5  
 };
 
 extern "C" void put_val(node*& rear, int val) {

@@ -1,9 +1,12 @@
 #ifndef PHASES_H
 #define PHASES_H
+#include <string>
 
+extern std::string ID_hex;
 extern char phase_1_str[767];
 extern int phase_1_offset;
 
+extern "C" void phase_0(char *input);
 extern "C" void phase_1(char *input);
 extern "C" void phase_2(char *input);
 extern "C" void phase_3(char *input);

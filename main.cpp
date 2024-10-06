@@ -59,6 +59,9 @@ int main()
     if (mode_choice)
         display_prologue();
 
+    printf("\033[34mPlease input your Student ID (23307xxxxxx).\nCaution: Different Student ID will generate different answer. Therefore, do not try getting others' answers.\033[0m\n");
+    read_line(input);
+    phase_0(input);
 
     printf("\033[34mYou have 6 phases with which to blow yourself up. Have a nice day!\n\033[0m");
 
@@ -67,7 +70,6 @@ int main()
     phase_1(input);
     if (mode_choice)
         display_phase_1_story();
-    printf("%ld", secret_key);
     puts("\033[34mPhase 1 defused. How about the next one?\033[0m");
 
 
