@@ -9,7 +9,7 @@
 using namespace std;
 
 // ----------------- phase 0 -----------------
-std::string ID_hex;
+int ID_hash = 0;
 
 void phase_0(char *input) {
     const string student_id = (string)input;
@@ -22,17 +22,17 @@ void phase_0(char *input) {
     EVP_DigestFinal_ex(context, hash, &lengthOfHash);
     EVP_MD_CTX_free(context);
 
-    stringstream ss;
-    for (size_t i = 0; i < lengthOfHash; ++i) {
-        ss << hex << setw(2) << setfill('0') << static_cast<int>(hash[i]);
+    for (size_t i = 0; i < sizeof(int); ++i) {
+        ID_hash = (ID_hash << 8) | hash[i];
     }
-    ID_hex = ss.str();
+
+    printf("Hash as integer:%x\n", ID_hash);
 }
 
 // ----------------- phase 1 -----------------
 
 char phase_1_str[] = "In 2024, the rapid advancement of AI continues to reshape society, but it also raises growing concerns. AI systems are becoming increasingly autonomous, often outpacing regulatory frameworks and ethical guidelines. AI's unchecked growth risks losing human control\0, potentially leading to unintended consequences. There is also concern about the concentration of power in a few AI-driven entities, which could manipulate data and outcomes. Now, more than ever, we must balance AI innovation with caution to ensure it benefits humanity rather than threatens it. We must take action to \033[31mcontain AI\033[0m.";
-int phase_1_offset = 215;
+int phase_1_offset = 215 - ID_hash % 10;
 
 extern "C" bool string_not_equal(char* src, char* dest) {
     for(int i = 0; dest[i]; i++) {
