@@ -261,93 +261,88 @@ void phase_5(char* input) { // ans: growth 2034 <ID_hash>
 
 // ----------------- phase 6 -----------------
 
-#define QUEUE_SIZE 6
-#define QUEUE_BEGIN 4
+#define STACK_SIZE 6
 #define PHASE6_INPUT_LEN 6
 
-struct{
-    int nums[6] = {2 ,4, 8, 16, 32, 64};
+struct {
+    int nums[6] = {2, 4, 8, 16, 32, 64};
 } phase_6_nums;
 
-struct node{
+struct node {
     int val;
+    struct node *prev;
     struct node *next;
 };
 
-node initialNodes[QUEUE_SIZE] = {
-        {60, &initialNodes[5]}, //0  
-        {10, &initialNodes[3]}, //1  
-        {50, &initialNodes[1]}, //2  
-        {30, &initialNodes[4]}, //3  
-        {20, &initialNodes[0]}, //4  
-        {40, &initialNodes[2]}  //5  
+node stackBottom = {3, nullptr, nullptr};
+node stackTop = {0, nullptr, nullptr};
+
+node initialNodes[STACK_SIZE] = {
+        {2, &stackBottom, &initialNodes[1]},        // 0
+        {4, &initialNodes[1], &initialNodes[3]},    // 1
+        {8, &initialNodes[2], &initialNodes[4]},    // 2
+        {16, &initialNodes[3], &initialNodes[5]},    // 3
+        {32, &initialNodes[4], &initialNodes[6]},    // 4
+        {64, &initialNodes[5], &stackTop}            // 5
 };
 
-extern "C" void put_val(node*& rear, int val) {
-    rear->val = val;
-    rear = rear->next;
-}
-
-extern "C" int get_val(node*& front) {
-    int val = front->val;
-    front = front->next;
+extern "C" int get_stack_top(node*& ptr) {
+    int val = ptr->val;
     return val;
 }
 
-extern "C" node* build_queue() {
-    return &initialNodes[QUEUE_BEGIN];
+extern "C" void stack_push(node*& ptr, int val) {
+    ptr->val = val;
+    ptr = ptr->next;
 }
 
-extern "C" bool check_answer(int *resultArray){
-    int isIncreasing = 1;
-    for (int i = 1; i < QUEUE_SIZE; i++) {
-        if (resultArray[i] < resultArray[i - 1]) {
-            isIncreasing = 0;
+extern "C" void stack_pop(node*& ptr) {
+    ptr = ptr->prev;
+}
+
+extern "C" node* build_stack() {
+    stackBottom.next = &initialNodes[0];
+    stackTop.prev = &initialNodes[5];
+    return stackBottom.next;
+}
+
+extern "C" bool check_answer() {
+    node* curr = stackBottom.next;
+    for (; curr != stackTop.prev; curr = curr->next) { // the first 5 nodes
+        if (curr->val < curr->prev->val) { // prev > curr, BOOM; need: prev <= curr
             return 0;
         }
     }
     return 1;
 }
 
-extern "C" bool build_target(int *nums){
-    node* front = nullptr;
-    node* rear = nullptr;
-    auto queue = build_queue();
-    front = queue;
-    rear = queue;
-    int resultArray[QUEUE_SIZE];
-
-    for (int i = 0; i < PHASE6_INPUT_LEN; i++) {
-        int dequeueCount = nums[i];
-        int output[dequeueCount];
-
-        for(int j=0;j<dequeueCount;j++){
-            output[j]=get_val(front);
-        }
-        
-        resultArray[i]=output[dequeueCount-1];
-
-        for(int j = dequeueCount - 1;j>=0;j--){
-            put_val(rear,output[j]);
-        }
+extern "C" bool maintain_monotonic_sequence(node* ptr, int val) {
+    if (stackBottom.val > val) { // val needs to be larger than stackBottom.val(5)
+        return false;
     }
-
-    // don't forget to free the memory(
-
-    bool res = check_answer(resultArray);
-    return res;
+    while (ptr != &stackBottom || ptr->val > val) {
+        stack_pop(ptr); // pop until ptr == stackBottom or ptr->val <= val
+    }
+    stack_push(ptr, val);
+    return true;
 }
 
 void phase_6(char* input) { // ans: 5 6 6 4 4 6
-    read_six_numbers(input, phase_6_nums.nums); 
+    read_six_numbers(input, phase_6_nums.nums);
+    printf("Valid Input\n");
     int* nums = phase_6_nums.nums;
-    for (auto h = 0; h < PHASE6_INPUT_LEN; h++) {
-        if(nums[h] > 6 || nums[h] < 0)
+    for (int i = 0; i < PHASE6_INPUT_LEN; ++i) {
+        if (nums[i] > 6 || nums[i] < 0) { // check: 0 <= nums[h] <= 6
             explode_bomb();
+        }
     }
 
-    bool res = build_target(nums);
-    if(!res) {
+    bool valid = true;
+    node* stackPtr = build_stack();
+    for (int i = 0; i < PHASE6_INPUT_LEN; ++i) {
+        valid &= maintain_monotonic_sequence(stackPtr, nums[i]);
+    }
+    if (!valid) {
         explode_bomb();
     }
 }
