@@ -55,61 +55,69 @@ int main()
 
     // configure
     std::map<std::string, std::string> config = readConfig("config.txt");
-    bool jumpMode = (config["jump_mode"] == "true");
+    int jumpMode = std::stoi(config["jump_mode"]);
     bool storyMode = (config["story_mode"] == "true");
     std::string studentID = config["student_id"];
 
+    // initialize
     printf("\033[34mPlease enter your Student ID (23307xxxxxx) in the config.txt file.\n"
        "Note: Different Student IDs will generate different answers. Therefore, do not attempt to use someone else's ID for the answers.\033[0m\n");
     phase_0(studentID);
-
     if (storyMode)
         display_prologue();
-
     printf("\033[34mYou have 6 phases with which to blow yourself up. Have a nice day!\033[0m\n");
 
-    read_line(input);
-    phase_1(input);
-    if (storyMode)
-        display_phase_1_story();
-    puts("\033[34mPhase 1 defused. How about the next one?\033[0m\n");
+    switch (jumpMode)
+    {
+        case 1:
+            read_line(input);
+            phase_1(input);
+            if (storyMode)
+                display_phase_1_story();
+            puts("\033[34mPhase 1 defused. How about the next one?\033[0m\n");
 
+        case 2:
+            read_line(input);
+            phase_2(input);
+            puts("\033[34mThat's number 2. Keep going!\033[0m\n");
+            // if (storyMode)
+            //     display_phase_2_story();
 
-    read_line(input);
-    phase_2(input);
-    puts("\033[34mThat's number 2. Keep going!\033[0m\n");
-    // if (storyMode)
-    //     display_phase_2_story();
+        case 3:
+            read_line(input);
+            phase_3(input);
+            puts("\033[34mHalfway there!\033[0m\n");
+            // if (storyMode)
+            //     display_phase_3_story();
 
+        case 4:
+            read_line(input);
+            phase_4(input);
+            puts("\033[34mSo you got that one. Try this one.\033[0m\n");
+            if (storyMode)
+                display_phase_4_story();
 
-    read_line(input);
-    phase_3(input);
-    puts("\033[34mHalfway there!\033[0m\n");
-    // if (storyMode)
-    //     display_phase_3_story();
+        case 5:
+            read_line(input);
+            phase_5(input);
+            puts("\033[34mGood work! On to the next...\033[0m\n");
+            if (storyMode)
+                display_phase_5_story();
 
-    read_line(input);
-    phase_4(input);
-    puts("\033[34mSo you got that one. Try this one.\033[0m\n");
-    if (storyMode)
-        display_phase_4_story();
+        case 6:
+            read_line(input);
+            phase_6(input);
+            puts("\033[34mCool! your skill on Reverse Engineer is great.\033[0m\n");
+            if (storyMode)
+                display_phase_6_story();
 
+        default:
+            printf("\033[31mInvalid jump mode! Please set jump_mode between 1 and 6.\033[0m\n");
+            exit(1);
+    }
 
-    read_line(input);
-    phase_5(input);
-    puts("\033[34mGood work! On to the next...\033[0m\n");
-    if (storyMode)
-        display_phase_5_story();
-
-
-    read_line(input);
-    phase_6(input);
-    puts("\033[34mCool! your skill on Reverse Engineer is great.\033[0m\n");
-    if (storyMode)
-        display_phase_6_story();
-
-
-    puts("\033[34mCongratulations!\033[0m\n");
+    if (jumpMode == 1)
+        puts("\033[34mCongratulations!\033[0m\n");
 
 
 

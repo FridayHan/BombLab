@@ -1,4 +1,8 @@
-# config.txt
-jump_mode = false
+# Configurations for BombLab
+# jump_mode: Set to the phase you want to jump to (1-6, 1 for no jump, 2-6 to skip phases before this one)
+# story_mode: Set to 'true' to enable story mode, 'false' to disable
+# student_id: Your Student ID, used to generate personalized answers (e.g., 2330713xxxx)
+
+jump_mode = 1
 story_mode = false
 student_id = 2330713xxxx
