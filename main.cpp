@@ -43,12 +43,13 @@ void read_line(char* input)
 
     while (getchar() != '\n'); // clear the input buffer
 }
-
+#pragma pack(push, 1)
 int main()
-{
-    char input[60];
-    long secret_key = 0;
-
+{   
+    char input[120];
+    long secret_key;
+    printf("input address: %p\n", (void*)&input);
+    printf("secret_key address: %p\n", (void*)&secret_key);
 
     // configure
     std::map<std::string, std::string> config = readConfig("config.txt");
@@ -137,3 +138,4 @@ int main()
 
     return 0;
 }
+#pragma pack(pop)

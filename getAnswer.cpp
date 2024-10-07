@@ -11,7 +11,6 @@ void get_1_answer() {
 
 void get_2_answer() {
     int base_add = ID_hash % 4 + 1;
-    printf("base_add: %d\n", base_add);
     int ans2[6] = {1};
     for (int h = 1; h < 6; ++h)
         ans2[h] = ans2[h-1] * (-10) + base_add;
