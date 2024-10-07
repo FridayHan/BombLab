@@ -4,7 +4,7 @@
 #include "phases.h"
 
 void get_1_answer() {
-    phase_1_offset = 215 - abs(ID_hash % 10);
+    phase_1_offset = 215 - ID_hash % 10;
     char* answer = phase_1_str + phase_1_offset;
     printf("%s\n", answer);
 }
@@ -51,7 +51,7 @@ void get_3_answer() {
 }
 
 void get_5_answer() {
-    printf("growth 2034 %x\n", ID_hash % 0x1000);
+    printf("growth 2034 %u\n", ID_hash % 0x1000);
 }
 
 int main() {
