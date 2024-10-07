@@ -57,7 +57,7 @@ void phase_1(char *input) { // ans: AI's unchecked growth risks losing human con
 // ----------------- phase 2 -----------------
 
 #define BASE_IN_2 -10
-#define BASE_ADD_2 (ID_hash % 4 + 1)
+#define BASE_ADD_2 ((ID_hash % 4) + 1)
 
 struct {
     int nums[6] = {2, 4, 8, 16, 32, 64};
@@ -68,6 +68,8 @@ struct {
 void phase_2(char *input) { // ans: 1 -6 64 -636 6364 -63636
     read_six_numbers(input, phase_2_nums.nums); 
     int* nums = phase_2_nums.nums;
+    phase_2_nums.base = BASE_IN_2;
+    phase_2_nums.add_num = BASE_ADD_2;
     for (auto h = 1; h < 6; h++) {
         int res = phase_2_nums.base * nums[h - 1] + phase_2_nums.add_num;
         if (res != nums[h]) {

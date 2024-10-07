@@ -6,6 +6,7 @@
 #include "phases.h"
 
 void get_1_answer() {
+    printf("ID_hash: %d\n", ID_hash);
     phase_1_offset = 215 - abs(ID_hash % 10);
     char* answer = phase_1_str + phase_1_offset;
     printf("%s\n", answer);
@@ -13,6 +14,7 @@ void get_1_answer() {
 
 void get_2_answer() {
     int base_add = ID_hash % 4 + 1;
+    printf("base_add: %d\n", base_add);
     int ans2[6] = {1};
     for (int h = 1; h < 6; ++h)
         ans2[h] = ans2[h-1] * (-10) + base_add;
