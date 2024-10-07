@@ -40,7 +40,7 @@ extern "C" bool string_not_equal(char* src, char* dest) {
     return true;
 }
 
-void phase_1(char *input) { // ans: AI's unchecked growth risks losing human control
+void phase_1(char *input) { // ans: <ID_hash%10 of more char>AI's unchecked growth risks losing human control
     phase_1_offset = 215 - ID_hash % 10;
     char* answer = phase_1_str + phase_1_offset; 
     if (!string_not_equal(input, answer)) {
@@ -50,7 +50,11 @@ void phase_1(char *input) { // ans: AI's unchecked growth risks losing human con
 
 // ----------------- phase 2 -----------------
 
-void phase_2(char *input) { // ans: 1 -6 64 -636 6364 -63636
+void phase_2(char *input) {
+    // ans(0): 1 -9 91 -909 9091 -90909
+    // ans(1): 1 -8 82 -818 8182 -81818
+    // ans(2): 1 -7 73 -727 7273 -72727 
+    // ans(3): 1 -6 64 -636 6364 -63636
     struct {
         int nums[6] = {2, 4, 8, 16, 32, 64};
         int base = -10;
@@ -68,7 +72,7 @@ void phase_2(char *input) { // ans: 1 -6 64 -636 6364 -63636
 
 // ----------------- phase 3 -----------------
 
-void phase_3(char *input) {//ans: 1 1 o
+void phase_3(char *input) { // ans: 1 1 o / 2 3 v / 5 8 e / 13 21 r / 34 55 f / 89 144 l / 233 377 o / 610 987 w
     int x, y;
     char c, c_chk;
     
@@ -221,7 +225,7 @@ public:
     }
 };
 
-void phase_5(char* input) { // ans: growth 2034 (<ID_hash> % 1000)
+void phase_5(char* input) { // ans: growth 2034 <ID_hash%0x1000>
     AIRegulator *regulator = nullptr;
 
     char regulation[15];

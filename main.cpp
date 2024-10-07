@@ -1,5 +1,5 @@
 /*
- *  FDU's Bomb++, Version 3.4
+ *  FDU's Bomb++, Version 3.6
  *  Copyright 2024, FDU ICS2024. All rights reserved.
  *  
  *  LICENSE:
@@ -71,25 +71,25 @@ int main()
             puts("\033[34mPHASE 1...\033[0m");
             read_line(input);
             phase_1(input);
+            puts("\033[34mPhase 1 defused. How about the next one?\033[0m");
             if (storyMode)
                 display_phase_1_story();
-            puts("\033[34mPhase 1 defused. How about the next one?\033[0m");
 
         case 2:
             puts("\033[34mPHASE 2...\033[0m");
             read_line(input);
             phase_2(input);
             puts("\033[34mThat's number 2. Keep going!\033[0m");
-            // if (storyMode)
-            //     display_phase_2_story();
+            if (storyMode)
+                display_phase_2_story();
 
         case 3:
             puts("\033[34mPHASE 3...\033[0m");
             read_line(input);
             phase_3(input);
             puts("\033[34mHalfway there!\033[0m");
-            // if (storyMode)
-            //     display_phase_3_story();
+            if (storyMode)
+                display_phase_3_story();
 
         case 4:
             puts("\033[34mPHASE 4...\033[0m");

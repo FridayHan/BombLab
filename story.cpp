@@ -22,10 +22,10 @@ void display_phase_1_story() {
     printf("\n\n");
 }
 
-// void display_phase_2_story() {
-//     printf("\n[Phase 2 Story]\n");
-//     printf("Moving forward, you discover strange functions within the code with names like 'control' and 'explode'. It seems that the bomb is more complex than expected.\n\n");
-// }
+void display_phase_2_story() {
+    printf("\n[Phase 2 Story]\n");
+    printf("Moving forward, you discover strange functions within the code with names like 'control' and 'explode'. It seems that the bomb is more complex than expected.\n\n");
+}
 
 void display_phase_3_story() {
     printf("\033[33m\n[Phase 3 Story]\n\033[0m");

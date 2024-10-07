@@ -4,7 +4,7 @@
 void display_prologue();
 
 void display_phase_1_story();
-// void display_phase_2_story();
+void display_phase_2_story();
 void display_phase_3_story();
 void display_phase_4_story();
 void display_phase_5_story();
