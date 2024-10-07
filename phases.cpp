@@ -315,7 +315,6 @@ extern "C" bool maintain_monotonic_sequence(node* ptr, int val) {
 
 void phase_6(char* input) { // ans: 4 4 4 4 4 4 (or any increasing sequence with the first element >= 4)
     read_six_numbers(input, phase_6_nums.nums);
-    printf("Valid Input\n");
     int* nums = phase_6_nums.nums;
     for (int i = 0; i < PHASE6_INPUT_LEN; ++i) {
         if (nums[i] > 6 || nums[i] < 0) { // check: 0 <= nums[h] <= 6
