@@ -230,7 +230,7 @@ void phase_5(char* input) { // ans: growth 2034 <ID_hash%0x1000>
 
     char regulation[15];
     int year;
-    int id_hashed;
+    unsigned int id_hashed;
 
     if (sscanf(input, "%s %d %u", regulation, &year, &id_hashed) != 3)
         explode_bomb();

@@ -57,6 +57,7 @@ int main()
     bool storyMode = (config["story_mode"] == "true");
     std::string studentID = config["student_id"];
 
+
     // initialize
     printf("\033[34mPlease enter your Student ID (23307xxxxxx) in the config.txt file.\n"
        "Note: Different Student IDs will generate different answers. Therefore, do not attempt to use someone else's ID for the answers.\033[0m\n");
