@@ -2,7 +2,7 @@
 #define PHASES_H
 #include <string>
 
-extern int ID_hash;
+extern unsigned int ID_hash;
 extern char phase_1_str[767];
 extern int phase_1_offset;
 

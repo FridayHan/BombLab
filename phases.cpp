@@ -8,7 +8,7 @@
 using namespace std;
 
 // ----------------- phase 0 -----------------
-int ID_hash = 0;
+unsigned int ID_hash = 0;
 
 void phase_0(std::string input) {
     const string student_id = (string)input;
@@ -41,7 +41,7 @@ extern "C" bool string_not_equal(char* src, char* dest) {
 }
 
 void phase_1(char *input) { // ans: AI's unchecked growth risks losing human control
-    phase_1_offset = 215 - abs(ID_hash % 10);
+    phase_1_offset = 215 - ID_hash % 10;
     char* answer = phase_1_str + phase_1_offset; 
     if (!string_not_equal(input, answer)) {
         explode_bomb();
@@ -179,7 +179,7 @@ public:
     virtual int enforcePenalty() = 0;
     virtual int triggerIntervention(int year) = 0;
 
-    int is_phase5_passable(int id_hashed) { return restrictionWeight >= 75 && id_hashed == ID_hash % 0x1000; }
+    int is_phase5_passable(unsigned int id_hashed) { return restrictionWeight >= 75 && id_hashed == ID_hash % 0x1000; }
 };
 
 class AIBehaviorRegulator : public AIRegulator {
@@ -228,7 +228,7 @@ void phase_5(char* input) { // ans: growth 2034 (<ID_hash> % 1000)
     int year;
     int id_hashed;
 
-    if (sscanf(input, "%s %d %x", regulation, &year, &id_hashed) != 3)
+    if (sscanf(input, "%s %d %u", regulation, &year, &id_hashed) != 3)
         explode_bomb();
 
     if (strcmp(regulation, "behavior") == 0) {
