@@ -30,7 +30,7 @@ void read_line(char* input)
 {
     char ch;
     int i;
-    for (i = 0; i <= 120; i++) {
+    for (i = 0; i <= 88; i++) {
         ch = getchar();
         if (ch == '\n') {
             input[i] = '\0';
@@ -46,8 +46,14 @@ void read_line(char* input)
 
 int main()
 {   
+    #pragma pack(push, 1)
     long secret_key = 0;
-    char input[120];
+    char input[88];
+    printf("Address of input: %p\n", (void*)&input);
+    printf("Address of input[1]: %p\n", (void*)&input[1]);
+    printf("Address of input[88]: %p\n", (void*)&input[88]);
+    printf("Address of secret_key: %p\n", (void*)&secret_key);
+    #pragma pack(pop)
 
     // configure
     std::map<std::string, std::string> config = readConfig("config.txt");

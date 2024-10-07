@@ -2,16 +2,13 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -Wall -g -std=c++20 -O0 -fno-stack-protector $(shell pkg-config --cflags openssl)
+CXXFLAGS = -Wall -Werror -g -std=c++20 -O0 -fno-stack-protector $(shell pkg-config --cflags openssl)
 
 # Linker flags
-LDFLAGS = $(shell pkg-config --libs openssl)
+LDFLAGS = -Wl,-Bstatic $(shell pkg-config --libs --static openssl) -Wl,-Bdynamic -ldl -lpthread -lrt -lc
 
 # Source files
 SRCS = main.cpp utils.cpp phases.cpp story.cpp
-
-# Header files
-HDRS = utils.h phases.h story.h
 
 # Object files
 OBJS = $(SRCS:.cpp=.o)
@@ -19,21 +16,20 @@ OBJS = $(SRCS:.cpp=.o)
 # Output executable
 TARGET = bomb
 
-# Default rule
+# Default rule: Build the target executable
 all: $(TARGET)
 
 # Rule to compile the executable
-$(TARGET): $(OBJS) Makefile
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
-	# strip --strip-debug $(TARGET)  # Strip debug symbols after compilation
+$(TARGET): $(OBJS)
+	$(CXX) -o $(TARGET) $(OBJS) $(LDFLAGS)
 
 # Rule to compile object files
-%.o: %.cpp $(HDRS) Makefile
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean rule to remove the compiled files
+# Clean rule to remove compiled files
 clean:
 	rm -f $(OBJS) $(TARGET)
 
-# Phony targets
+# Phony targets to avoid conflicts
 .PHONY: all clean
