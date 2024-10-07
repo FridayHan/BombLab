@@ -1,5 +1,5 @@
 /*
- *  FDU's Bomb+, Version 3.4
+ *  FDU's Bomb++, Version 3.4
  *  Copyright 2024, FDU ICS2024. All rights reserved.
  *  
  *  LICENSE:
@@ -30,7 +30,7 @@ void read_line(char* input)
 {
     char ch;
     int i;
-    for (i = 0; i <= 60; i++) {
+    for (i = 0; i <= 120; i++) {
         ch = getchar();
         if (ch == '\n') {
             input[i] = '\0';
@@ -43,11 +43,11 @@ void read_line(char* input)
 
     while (getchar() != '\n'); // clear the input buffer
 }
-#pragma pack(push, 1)
+
 int main()
 {   
     char input[120];
-    long secret_key;
+    long secret_key = 0;
     printf("input address: %p\n", (void*)&input);
     printf("secret_key address: %p\n", (void*)&secret_key);
 
@@ -68,50 +68,50 @@ int main()
     switch (jumpMode)
     {
         case 1:
-            puts("\033[34mPHASE 1...\033[0m\n");
+            puts("\033[34mPHASE 1...\033[0m");
             read_line(input);
             phase_1(input);
             if (storyMode)
                 display_phase_1_story();
-            puts("\033[34mPhase 1 defused. How about the next one?\033[0m\n");
+            puts("\033[34mPhase 1 defused. How about the next one?\033[0m");
 
         case 2:
-            puts("\033[34mPHASE 2...\033[0m\n");
+            puts("\033[34mPHASE 2...\033[0m");
             read_line(input);
             phase_2(input);
-            puts("\033[34mThat's number 2. Keep going!\033[0m\n");
+            puts("\033[34mThat's number 2. Keep going!\033[0m");
             // if (storyMode)
             //     display_phase_2_story();
 
         case 3:
-            puts("\033[34mPHASE 3...\033[0m\n");
+            puts("\033[34mPHASE 3...\033[0m");
             read_line(input);
             phase_3(input);
-            puts("\033[34mHalfway there!\033[0m\n");
+            puts("\033[34mHalfway there!\033[0m");
             // if (storyMode)
             //     display_phase_3_story();
 
         case 4:
-            puts("\033[34mPHASE 4...\033[0m\n");
+            puts("\033[34mPHASE 4...\033[0m");
             read_line(input);
             phase_4(input);
-            puts("\033[34mSo you got that one. Try this one.\033[0m\n");
+            puts("\033[34mSo you got that one. Try this one.\033[0m");
             if (storyMode)
                 display_phase_4_story();
 
         case 5:
-            puts("\033[34mPHASE 5...\033[0m\n");
+            puts("\033[34mPHASE 5...\033[0m");
             read_line(input);
             phase_5(input);
-            puts("\033[34mGood work! On to the next...\033[0m\n");
+            puts("\033[34mGood work! On to the next...\033[0m");
             if (storyMode)
                 display_phase_5_story();
 
         case 6:
-            puts("\033[34mPHASE 6...\033[0m\n");
+            puts("\033[34mPHASE 6...\033[0m");
             read_line(input);
             phase_6(input);
-            puts("\033[34mCool! your skill on Reverse Engineer is great.\033[0m\n");
+            puts("\033[34mCool! your skill on Reverse Engineer is great.\033[0m");
             if (storyMode)
                 display_phase_6_story();
             break;
@@ -125,7 +125,7 @@ int main()
         puts("\033[34mCongratulations!\033[0m\n");
 
     if (secret_key) {
-        slow_put("\033[34mWelcome to the secret phase of Bomb+!\033[0m\n");
+        slow_put("\033[34mWelcome to the secret phase of Bomb++!\033[0m\n");
         slow_put("It is called");
         slow_slow_put("... THE STEINS;GATE\n");
 
@@ -138,4 +138,3 @@ int main()
 
     return 0;
 }
-#pragma pack(pop)
