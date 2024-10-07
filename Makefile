@@ -22,6 +22,7 @@ all: $(TARGET)
 # Rule to compile the executable
 $(TARGET): $(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS) $(LDFLAGS)
+	strip --strip-debug $(TARGET)  # Strip debug symbols after compilation
 
 # Rule to compile object files
 %.o: %.cpp
