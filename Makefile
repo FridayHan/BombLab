@@ -6,7 +6,7 @@ CXXFLAGS = -Wall -Werror -g -std=c++20 -O0 -fno-stack-protector $(shell pkg-conf
 
 # Linker flags
 # LDFLAGS = -Wl,-Bstatic $(shell pkg-config --libs --static openssl) -ldl -lpthread -lrt -Wl,-Bdynamic -lc
-LDFLAGS = $(shell pkg-config --libs --static openssl) -ldl -lpthread -lrt -lc
+LDFLAGS = $(shell pkg-config --libs --static openssl)
 
 # Source files
 SRCS = main.cpp utils.cpp phases.cpp story.cpp
