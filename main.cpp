@@ -48,8 +48,6 @@ int main()
 {   
     long secret_key = 0;
     char input[120];
-    printf("input address: %p\n", (void*)&input);
-    printf("secret_key address: %p\n", (void*)&secret_key);
 
     // configure
     std::map<std::string, std::string> config = readConfig("config.txt");
