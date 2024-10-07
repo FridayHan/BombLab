@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <map>
+#include <cstring>
 #include "utils.h"
 #include "phases.h"
 #include "story.h"
@@ -46,14 +47,11 @@ void read_line(char* input)
 
 int main()
 {   
-    #pragma pack(push, 1)
     long secret_key = 0;
     char input[88];
-    printf("Address of input: %p\n", (void*)&input);
-    printf("Address of input[1]: %p\n", (void*)&input[1]);
-    printf("Address of input[88]: %p\n", (void*)&input[88]);
-    printf("Address of secret_key: %p\n", (void*)&secret_key);
-    #pragma pack(pop)
+
+    memset(input, 0, sizeof(input));
+    memset(&secret_key, 0, sizeof(secret_key));
 
     // configure
     std::map<std::string, std::string> config = readConfig("config.txt");
