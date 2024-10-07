@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "story.h"
-#include "utils.h"
 #include "phases.h"
 // #include "phases.cpp"
 
@@ -15,12 +14,11 @@ void display_prologue() {
     printf("Get ready, brave scientist...\n\n");
 }
 
-// Small story snippets after each phase
 void display_phase_1_story() {
     printf("\033[33m\n[Phase 1 Story]\n\033[0m");
     printf("While inspecting the code, you notice some unusual comments left by the original designer.\n");
     printf("%s", phase_1_str);
-    printf("%s", phase_1_str + phase_1_offset + 49);
+    printf("%s", phase_1_str + 264);
     printf("\n\n");
 }
 

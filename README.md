@@ -16,7 +16,8 @@ CSAPP 第三章配套实验。
 你的目标是拆除炸弹，无伤通过 Bomb++ 的所有关卡。
 
 ## 二、实验剧情
-前排提醒：剧情内容仅为增加实验趣味性所设，**对解题本身毫无影响**！（也就是说如果不愿意看，可以直接在**config.txt**中将**story_mode**设定为false）
+
+前排提醒：剧情内容仅为增加实验趣味性所设，**对解题本身毫无影响**！（也就是说如果不愿意看，可以直接在**config.txt**中将**story_mode**设定为**false**）
 
 ## 三、实验内容
 
@@ -62,7 +63,7 @@ Secret. ████
 
 ### 内容要求
 
-在项目的**根目录**下，需要有实验报告以及正确口令 `password.txt`。注意，`password.txt` 需要满足可以用重定向秒杀 Bomb++ 的要求（我们会在后面介绍什么是重定向），我们会用这个来判断你通过了几关。
+在项目的**根目录**下，需要有**实验报告**以及正确口令 **password.txt**。注意，`password.txt` 需要满足可以用重定向秒杀 Bomb++ 的要求（我们会在后面介绍什么是重定向），我们会用这个来判断你通过了几关。
 
 你的实验报告应包含以下内容：
 
@@ -79,6 +80,7 @@ Secret. ████
 > 我们不希望看到冗长或表意混乱的报告，请一定不要把报告写成论文 QaQ
 
 ### 格式要求
+
 实验报告可提交 .md ⽂件或者 .pdf ⽂件。不要提交 .doc 或 .docx ⽂件。
 （如果提交 .md ⽂件，请确保助教能同时看到你报告中的截图！）
 
@@ -89,7 +91,7 @@ Secret. ████
 在终端运行以下指令：
 
 ```shell
-git add answer_<学号>.txt lab2_<学号>.pdf(e.g. lab2_23307130000.txt/pdf)
+git add password.txt lab2_<学号>.pdf(e.g. lab2_23307130000./pdf)
 git commit -m "xxx(可以是你的提交注释)"
 # 最后一个commit请添加tag:final
 git tag "final"
@@ -101,11 +103,11 @@ git push
 ### 评分
 
 | 项目                | 分值 |
-| ------------------ | ---- |
-| 提交格式正确         | 5%   |
-| 通过正常关卡 6\*13%  | 78%  |
-| 通过隐藏关卡         | 7%   |
-| 实验报告             | 10%  |
+| ------------------- | ---- |
+| 提交格式正确        | 5%   |
+| 通过正常关卡 6\*13% | 78%  |
+| 通过隐藏关卡        | 7%   |
+| 实验报告            | 10%  |
 
 另：抄袭倒扣分！！勿谓言之不预。
 
@@ -268,7 +270,8 @@ $ cat password.txt - | ./bomb
 
 
 ## 八、实验彩蛋
+
 <image src="meme.jpg" style="width: 320px; height: 320px;display: flex; justify-content: center; align-items: center;">
 
 * 曾经可能会出现的剧情
-<img src="PlotAdvice.png" style="width: 400px;">
+  <img src="PlotAdvice.png" style="width: 400px;">
