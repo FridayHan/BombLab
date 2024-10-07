@@ -2,7 +2,7 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -Wall -Werror -g -std=c++20 -O0 -fno-stack-protector $(shell pkg-config --cflags openssl)
+CXXFLAGS = -Wall -Werror -g -std=c++2a -O0 -fno-stack-protector $(shell pkg-config --cflags openssl)
 
 # Linker flags
 # LDFLAGS = -Wl,-Bstatic $(shell pkg-config --libs --static openssl) -ldl -lpthread -lrt -Wl,-Bdynamic -lc
