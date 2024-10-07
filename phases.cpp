@@ -338,20 +338,58 @@ void phase_6(char* input) { // ans: 4 4 4 4 4 4 (or any increasing sequence with
 // Entrance:
 // In any phase, add lots of characters after the correct password to overflow into the `secret_key`
 
-void secret_phase(char *input) {//ans: 1677734099
+typedef enum {
+    S0, // initial state
+    S1, // state 1
+    S2, // state 2
+    S3, // state 3
+    R   // reject state (explode in the next iteration)
+} State;
 
-    /* Junk Instructions
-     *  ebff -> jmp -1
-     *  ffc0 -> inc eax
-     *  ffc8 -> dec eax */
-    asm(".byte 0xeb, 0xff, 0xc0, 0xff, 0xc8");
-    
-    unsigned int num;
-    unsigned int key = 0xdeadc0de;
-
-    sscanf(input, "%ud", &num);
-    num ^= key;
-
-    if (num != 0xbaadf00d)
+void secret_phase(char* input) { // ans: CIE
+    State state = S0;
+    for (int i = 0; i < 3; ++i) {
+    // for (int i = 0; input[i] != '\0'; ++i) {
+        if (((input[i] - 'A') & 1) || (input[i] > 'J')) { // only accept 'A', 'C', 'E', 'G', 'I'
+            explode_bomb();
+        }
+        switch (state) {
+            case S0:
+                if (input[i] == 'C') {
+                    state = S1;
+                } else if (input[i] == 'A' || input[i] == 'G') {
+                    state = R;
+                } else { // I, E
+                    explode_bomb();
+                }
+                break;
+            case S1:
+                if (input[i] == 'I') {
+                    state = S2;
+                } else if (input[i] == 'C' || input[i] == 'E') {
+                    state = R;
+                } else { // A, G
+                    explode_bomb();
+                }
+                break;
+            case S2:
+                if (input[i] == 'E') {
+                    state = S3;
+                } else if (input[i] == 'I') {
+                    state = S2;
+                } else { // C, A, G
+                    explode_bomb();
+                }
+                break;
+            case R:
+                explode_bomb();
+                break;
+            default:
+                explode_bomb();
+                break;
+        }
+    }
+    if (state != S3) { // final check
         explode_bomb();
+    }
 }
