@@ -45,8 +45,6 @@ void read_line(char* input)
     while (getchar() != '\n'); // clear the input buffer
 }
 
-std::map<std::string, std::string> readConfig(const std::string& filename);
-
 int main()
 {
     char input[60];
@@ -125,8 +123,6 @@ int main()
     if (jumpMode == 1)
         puts("\033[34mCongratulations!\033[0m\n");
 
-
-
     if (secret_key) {
         slow_put("\033[34mWelcome to the secret phase of Bomb+!\033[0m\n");
         slow_put("It is called");
@@ -140,33 +136,4 @@ int main()
     }
 
     return 0;
-}
-
-std::map<std::string, std::string> readConfig(const std::string& filename)
-{
-    std::ifstream configFile(filename);
-    std::map<std::string, std::string> config;
-    std::string line;
-
-    if (configFile.is_open()) {
-        while (std::getline(configFile, line)) {
-            if (line.empty() || line[0] == '#') continue;
-
-            size_t delimiterPos = line.find("=");
-            std::string key = line.substr(0, delimiterPos);
-            std::string value = line.substr(delimiterPos + 1);
-
-            key.erase(0, key.find_first_not_of(" \t"));
-            key.erase(key.find_last_not_of(" \t") + 1);
-            value.erase(0, value.find_first_not_of(" \t"));
-            value.erase(value.find_last_not_of(" \t") + 1);
-
-            config[key] = value;
-        }
-        configFile.close();
-    } else {
-        printf("Unable to open config file: %s", filename);
-    }
-
-    return config;
 }

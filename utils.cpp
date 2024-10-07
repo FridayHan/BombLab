@@ -24,6 +24,35 @@ void explode_bomb() {
     exit(1);
 }
 
+std::map<std::string, std::string> readConfig(const std::string& filename)
+{
+    std::ifstream configFile(filename);
+    std::map<std::string, std::string> config;
+    std::string line;
+
+    if (configFile.is_open()) {
+        while (std::getline(configFile, line)) {
+            if (line.empty() || line[0] == '#') continue;
+
+            size_t delimiterPos = line.find("=");
+            std::string key = line.substr(0, delimiterPos);
+            std::string value = line.substr(delimiterPos + 1);
+
+            key.erase(0, key.find_first_not_of(" \t"));
+            key.erase(key.find_last_not_of(" \t") + 1);
+            value.erase(0, value.find_first_not_of(" \t"));
+            value.erase(value.find_last_not_of(" \t") + 1);
+
+            config[key] = value;
+        }
+        configFile.close();
+    } else {
+        printf("Unable to open config file: %s", filename.c_str());
+    }
+
+    return config;
+}
+
 // put a string to stdout, one character at a time, interval 0.1s
 void slow_put(const char* str)
 {
