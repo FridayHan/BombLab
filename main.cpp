@@ -114,6 +114,7 @@ int main()
             puts("\033[34mCool! your skill on Reverse Engineer is great.\033[0m\n");
             if (storyMode)
                 display_phase_6_story();
+            break;
 
         default:
             printf("\033[31mInvalid jump mode! Please set jump_mode between 1 and 6.\033[0m\n");

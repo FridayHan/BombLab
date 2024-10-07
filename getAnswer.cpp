@@ -6,7 +6,6 @@
 #include "phases.h"
 
 void get_1_answer() {
-    printf("ID_hash: %d\n", ID_hash);
     phase_1_offset = 215 - abs(ID_hash % 10);
     char* answer = phase_1_str + phase_1_offset;
     printf("%s\n", answer);
@@ -23,8 +22,39 @@ void get_2_answer() {
     printf("\n");
 }
 
+void get_3_answer() {
+    int check = ID_hash % 8;
+    switch(check)
+    {
+        case 0:
+            printf("1 1 o\n");
+            break;
+        case 1:
+            printf("2 3 v\n");
+            break;
+        case 2:
+            printf("5 8 e\n");
+            break;
+        case 3:
+            printf("13 21 r\n");
+            break;
+        case 4:
+            printf("34 55 f\n");
+            break;
+        case 5:
+            printf("89 144 l\n");
+            break;
+        case 6:
+            printf("233 377 o\n");
+            break;
+        case 7:
+            printf("610 987 w\n");
+            break;
+    }
+}
+
 void get_5_answer() {
-    printf("growth 2034 %x\n", ID_hash % 100);
+    printf("growth 2034 %x\n", ID_hash % 0x1000);
 }
 
 int main() {
@@ -40,7 +70,7 @@ int main() {
     printf("phase_2 answer: \n");
     get_2_answer();
     printf("phase_3 answer: \n");
-    printf("1 1 o\n");
+    get_3_answer();
     printf("phase_4 answer: \n");
     printf("42949672961\n");
     printf("phase_5 answer: \n");

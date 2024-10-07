@@ -26,8 +26,6 @@ void phase_0(std::string input) {
     for (size_t i = 0; i < sizeof(int); ++i) {
         ID_hash = (ID_hash << 8) | hash[i];
     }
-
-    // printf("Hash as integer:%d\n", ID_hash);
 }
 
 // ----------------- phase 1 -----------------
@@ -46,8 +44,6 @@ extern "C" bool string_not_equal(char* src, char* dest) {
 
 void phase_1(char *input) { // ans: AI's unchecked growth risks losing human control
     phase_1_offset = 215 - abs(ID_hash % 10);
-    // printf("%d\n", ID_hash % 10);
-    // printf("%d\n", phase_1_offset);
     char* answer = phase_1_str + phase_1_offset; 
     if (!string_not_equal(input, answer)) {
         explode_bomb();
@@ -84,6 +80,8 @@ void phase_3(char *input) {//ans: 1 1 o
     int x, y;
     char c, c_chk;
     
+    int check = ID_hash % 8;
+    
     int retval = sscanf(input, "%d %d %c", &x, &y, &c);
 
     if (retval != 3) {
@@ -94,49 +92,49 @@ void phase_3(char *input) {//ans: 1 1 o
     {
         case 1:
             c_chk = 'o';
-            if (y != 1) 
+            if (y != 1 || check != 0) 
                 explode_bomb();
             break;
 
         case 2:
             c_chk = 'v';
-            if (y != 3)
+            if (y != 3 || check != 1)
                 explode_bomb();
             break;
 
         case 5:
             c_chk = 'e';
-            if (y != 8)
+            if (y != 8 || check != 2)
                 explode_bomb();
             break;
 
         case 13:
             c_chk = 'r';
-            if (y != 21)
+            if (y != 21 || check != 3)
                 explode_bomb();
             break;
 
         case 34:
             c_chk = 'f';
-            if (y != 55)
+            if (y != 55 || check != 4)
                 explode_bomb();
             break;
 
         case 89:
             c_chk = 'l';
-            if (y != 144)
+            if (y != 144 || check != 5)
                 explode_bomb();
             break;
 
         case 233:
             c_chk = 'o';
-            if (y != 377)
+            if (y != 377 || check != 6)
                 explode_bomb();
             break;
         
         case 610:
             c_chk = 'w';
-            if (y != 987)
+            if (y != 987 || check != 7)
                 explode_bomb();
             break;
 
