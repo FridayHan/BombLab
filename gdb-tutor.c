@@ -4,7 +4,7 @@
  * 
  *  This is a tutorial for GDB.
  *  It is designed to be used with the BombLab.
- *  ICS 2023, FDU.
+ *  ICS 2024, FDU.
  */
 
 #include <stdio.h>
