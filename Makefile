@@ -2,7 +2,7 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -Wall -g -std=c++20 -O0 $(shell pkg-config --cflags openssl)
+CXXFLAGS = -Wall -g -std=c++20 -O0 -fno-stack-protector $(shell pkg-config --cflags openssl)
 
 # Linker flags
 LDFLAGS = $(shell pkg-config --libs openssl)
@@ -25,7 +25,7 @@ all: $(TARGET)
 # Rule to compile the executable
 $(TARGET): $(OBJS) Makefile
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
-	strip --strip-debug $(TARGET)  # Strip debug symbols after compilation
+	# strip --strip-debug $(TARGET)  # Strip debug symbols after compilation
 
 # Rule to compile object files
 %.o: %.cpp $(HDRS) Makefile
