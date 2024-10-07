@@ -67,7 +67,6 @@ struct {
 
 void phase_2(char *input) { // ans: 1 -6 64 -636 6364 -63636
     read_six_numbers(input, phase_2_nums.nums); 
-
     int* nums = phase_2_nums.nums;
     for (auto h = 1; h < 6; h++) {
         int res = phase_2_nums.base * nums[h - 1] + phase_2_nums.add_num;
@@ -79,77 +78,72 @@ void phase_2(char *input) { // ans: 1 -6 64 -636 6364 -63636
 
 // ----------------- phase 3 -----------------
 
-void phase_3(char *input) { // ans: 0 v e r f 1 0 w
-    int x, y, z, stage = 0;
-    char a, b, c, d, e;
+void phase_3(char *input) {//ans: 1 1 o
+    int x, y;
+    char c, c_chk;
     
-    int retval = sscanf(input, "%d %c %c %c %c %d %d %c", &x, &a, &b, &c, &d, &y, &z, &e);
+    int retval = sscanf(input, "%d %d %c", &x, &y, &c);
 
-    if (retval != 8) {
+    if (retval != 3) {
         explode_bomb();
     }
 
-    while(stage != 3)
+    switch (x)
     {
-        switch (stage)
-        {
-            case 7:
-                if (d != 'f')
-                    explode_bomb();
-                stage = 2;
-                break;
-            
-            case 1:
-                if (z != 0)
-                    explode_bomb();
-                stage = 5;
-                break;
-
-            case 0:
-                if (x != 0)
-                    explode_bomb();
-                stage = 9;
-                break;
-
-            case 8:
-                if (b != 'e')
-                    explode_bomb();
-                stage = 6;
-                break;
-
-            case 9:
-                if (a != 'v')
-                    explode_bomb();
-                stage = 8;
-                break;
-    
-            case 5:
-                if (e != 'w')
-                    explode_bomb();
-                stage = 3;
-                break;
-            
-            case 6:
-                if (c != 'r')
-                    explode_bomb();
-                stage = 7;
-                break;
-
-            case 2:
-                if (y != 1)
-                    explode_bomb();
-                stage = 1;
-                break;
-            
-            case 53535:
-                if (y != 3)
-                    explode_bomb();
-                stage = 32222;
-
-            default:
+        case 1:
+            c_chk = 'o';
+            if (y != 1) 
                 explode_bomb();
-        }
+            break;
+
+        case 2:
+            c_chk = 'v';
+            if (y != 3)
+                explode_bomb();
+            break;
+
+        case 5:
+            c_chk = 'e';
+            if (y != 8)
+                explode_bomb();
+            break;
+
+        case 13:
+            c_chk = 'r';
+            if (y != 21)
+                explode_bomb();
+            break;
+
+        case 34:
+            c_chk = 'f';
+            if (y != 55)
+                explode_bomb();
+            break;
+
+        case 89:
+            c_chk = 'l';
+            if (y != 144)
+                explode_bomb();
+            break;
+
+        case 233:
+            c_chk = 'o';
+            if (y != 377)
+                explode_bomb();
+            break;
+        
+        case 610:
+            c_chk = 'w';
+            if (y != 987)
+                explode_bomb();
+            break;
+
+        default:
+            explode_bomb();
     }
+
+    if (c != c_chk)
+        explode_bomb();
 }
 
 // ----------------- phase 4 -----------------

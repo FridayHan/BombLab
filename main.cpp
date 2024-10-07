@@ -70,6 +70,7 @@ int main()
     switch (jumpMode)
     {
         case 1:
+            puts("\033[34mPHASE 1...\033[0m\n");
             read_line(input);
             phase_1(input);
             if (storyMode)
@@ -77,6 +78,7 @@ int main()
             puts("\033[34mPhase 1 defused. How about the next one?\033[0m\n");
 
         case 2:
+            puts("\033[34mPHASE 2...\033[0m\n");
             read_line(input);
             phase_2(input);
             puts("\033[34mThat's number 2. Keep going!\033[0m\n");
@@ -84,6 +86,7 @@ int main()
             //     display_phase_2_story();
 
         case 3:
+            puts("\033[34mPHASE 3...\033[0m\n");
             read_line(input);
             phase_3(input);
             puts("\033[34mHalfway there!\033[0m\n");
@@ -91,6 +94,7 @@ int main()
             //     display_phase_3_story();
 
         case 4:
+            puts("\033[34mPHASE 4...\033[0m\n");
             read_line(input);
             phase_4(input);
             puts("\033[34mSo you got that one. Try this one.\033[0m\n");
@@ -98,6 +102,7 @@ int main()
                 display_phase_4_story();
 
         case 5:
+            puts("\033[34mPHASE 5...\033[0m\n");
             read_line(input);
             phase_5(input);
             puts("\033[34mGood work! On to the next...\033[0m\n");
@@ -105,6 +110,7 @@ int main()
                 display_phase_5_story();
 
         case 6:
+            puts("\033[34mPHASE 6...\033[0m\n");
             read_line(input);
             phase_6(input);
             puts("\033[34mCool! your skill on Reverse Engineer is great.\033[0m\n");
