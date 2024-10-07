@@ -2,6 +2,7 @@
     "files.associations": {
         "*.rmd": "markdown",
         "locale": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "map": "cpp"
     }
 }

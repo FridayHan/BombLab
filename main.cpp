@@ -31,7 +31,7 @@ void read_line(char* input)
 {
     char ch;
     int i;
-    for (i = 0; i <= 50; i++) {
+    for (i = 0; i <= 60; i++) {
         ch = getchar();
         if (ch == '\n') {
             input[i] = '\0';
@@ -49,7 +49,7 @@ std::map<std::string, std::string> readConfig(const std::string& filename);
 
 int main()
 {
-    char input[50];
+    char input[60];
     long secret_key = 0;
 
 
