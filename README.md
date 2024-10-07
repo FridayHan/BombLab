@@ -84,14 +84,14 @@ Secret. ████
 
 ### 提交方法
 
+将答案写到answer_<学号>.txt中，将实验报告转换成pdf，并命名为lab2_<学号>.pdf
+
 在终端运行以下指令：
 
 ```shell
-git add answer.txt <学号>_lab2.pdf(e.g. 23307130000_lab2.pdf)
-# 提交当前文件夹下的所有更改到暂存区
-# 也可以指定提交文件，比如 git add report.md image.png
+git add answer_<学号>.txt lab2_<学号>.pdf(e.g. lab2_23307130000.txt/pdf)
 git commit -m "xxx(可以是你的提交注释)"
-# 最后一个commit请添加tag：final
+# 最后一个commit请添加tag:final
 git tag "final"
 # 将暂存区的所有更改提交到本地仓库
 git push
