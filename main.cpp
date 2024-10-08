@@ -121,7 +121,7 @@ int main()
             break;
 
         default:
-            printf("\033[31mInvalid jump mode! Please set jump_mode between 1 and 6." RESET "\n");
+            printf(RED "Invalid jump mode! Please set jump_mode between 1 and 6." RESET "\n");
             exit(1);
     }
 
@@ -141,7 +141,7 @@ int main()
 
         printf("You are really a Master of Reverse Engineer!");
         true_ending();
-
+        
         if (storyMode)
             display_secret_ending();
     }
