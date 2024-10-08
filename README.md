@@ -1,12 +1,10 @@
 ---
-title = BombLab
+title: BombLab
+author: 韩周吾 俞霁洲
+email: 22307130440@m.fudan.edu.cn 22307130469@m.fudan.edu.cn
 ---
 
 > Deadline：2024-10-23 23:59:59
-
-> 负责助教：
-  * 韩周吾 22307130440@m.fudan.edu.cn
-  * 俞霁洲 22307130469@m.fudan.edu.cn
 
 ## 一、实验简介
 
