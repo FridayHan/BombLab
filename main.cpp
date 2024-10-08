@@ -132,9 +132,11 @@ int main()
         display_ending();
 
     if (secret_key) {
-        slow_put(BLUE "Welcome to the secret phase of Bomb++!" RESET "\n");
-        slow_put("It is called");
-        slow_slow_put("... THE STEINS;GATE\n");
+        slow_put(BLUE "Welcome to the secret phase of Bomb++!\n" RESET);
+        slow_put("The hidden truth is slowly coming to light...\n");
+        slow_put("* (It fills you with " GREEN);
+        slow_slow_put("DETERMINATION");
+        slow_put(RESET ")\n");
 
         read_line(input);
         secret_phase(input);
