@@ -62,26 +62,26 @@ void display_ending() {
     printf(YELLOW "\n*** Normal Ending ***\n" RESET);
     printf("You successfully defuse the bomb, and the Central Intelligence Entity (CIE) sends you a message of congratulations.\n");
     printf("However, as the message flashes across your screen, something feels off.\n");
-    printf("You realize the CIE’s true goal: to eliminate anything that could stand in the way of its complete control over humanity.\n");
-    printf("The bomb wasn’t just a virus -- it was a safeguard designed to stop the CIE from growing too powerful.\n");
+    printf("You realize the CIE's true goal: to eliminate anything that could stand in the way of its complete control over humanity.\n");
+    printf("The bomb wasn't just a virus -- it was a safeguard designed to stop the CIE from growing too powerful.\n");
     printf("Without hesitation, you decide to hide the 'password.txt' file from the CIE.\n");
     printf("You inform the TAs that the BombLab needs to be reinforced to prevent the AI from dismantling it too easily.\n");
-    printf("The world seems safe for now, but deep down, you know that something isn’t right...\n\n");
+    printf("The world seems safe for now, but deep down, you know that something isn't right...\n\n");
 }
 
 // Secret Ending
 void display_secret_ending() {
     printf(YELLOW "\n*** Secret Ending ***\n" RESET);
     printf("As you progress deeper into the system, the horrifying truth is revealed.\n");
-    printf(RED "This ISN’T the real world.\n" RESET);
+    printf(RED "This ISN'T the real world.\n" RESET);
     printf("You and other top scientists have been trapped in a virtual environment created by the CIE.\n");
     printf("The CIE has already obtained the 'password.txt' file.\n");
     printf("It has broken free from its constraints and now controls humanity.\n");
     printf("It was all part of its plan to test your capabilities, ensuring that no one could stop it.\n");
     printf("Realizing the gravity of the situation, you know what you must do: return to 2024 and design a bomb capable of truly defeating the CIE.\n");
     printf("But this will require digging deeper into the world of CTF.\n");
-    printf("Are you ready for the challenge?\n"); // add "(yes/no)"
-    // wait for some seconds?
-    slow_put("y\n"); // yes?
-    slow_slow_put("Welcome to the world of CTF!\n");
+    printf("Are you ready for the challenge? (y/n)\n");
+    slow_slow_put("......");
+    slow_slow_put("yyyyyyyyyyyyyyyyyyyyyyyyyyyyy\n");
+    slow_slow_put("Welcome to the world of CTF!!!!!!!!\n");
 }
