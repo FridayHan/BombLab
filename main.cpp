@@ -20,6 +20,7 @@
 #include "utils.h"
 #include "phases.h"
 #include "story.h"
+#include "colors.h"
 
 /*
  * Note to self: Remember to erase this file so my victims will have
@@ -61,81 +62,81 @@ int main()
 
 
     // initialize
-    printf("\033[34mPlease enter your Student ID (23307xxxxxx) in the config.txt file.\n"
-       "Note: Different Student IDs will generate different answers. Therefore, do not attempt to use someone else's ID for the answers.\033[0m\n");
+    printf(BLUE "Please enter your Student ID (23307xxxxxx) in the config.txt file.\n"
+       "Note: Different Student IDs will generate different answers. Therefore, do not attempt to use someone else's ID for the answers." RESET "\n");
     phase_0(studentID);
     if (storyMode)
         display_prologue();
-    printf("\033[34mYou have 6 phases with which to blow yourself up. Have a nice day!\033[0m\n");
+    printf(BLUE "You have 6 phases with which to blow yourself up. Have a nice day!" RESET "\n");
 
     switch (jumpMode)
     {
         case 1:
-            puts("\033[34mPHASE 1...\033[0m");
+            printf(BLUE "PHASE 1..." RESET);
             read_line(input);
             phase_1(input);
-            puts("\033[34mPhase 1 defused. How about the next one?\033[0m");
+            printf(BLUE "Phase 1 defused. How about the next one?" RESET);
             if (storyMode)
                 display_phase_1_story();
 
         case 2:
-            puts("\033[34mPHASE 2...\033[0m");
+            printf(BLUE "PHASE 2..." RESET);
             read_line(input);
             phase_2(input);
-            puts("\033[34mThat's number 2. Keep going!\033[0m");
+            printf(BLUE "That's number 2. Keep going!" RESET);
             if (storyMode)
                 display_phase_2_story();
 
         case 3:
-            puts("\033[34mPHASE 3...\033[0m");
+            printf(BLUE "PHASE 3..." RESET);
             read_line(input);
             phase_3(input);
-            puts("\033[34mHalfway there!\033[0m");
+            printf(BLUE "Halfway there!" RESET);
             if (storyMode)
                 display_phase_3_story();
 
         case 4:
-            puts("\033[34mPHASE 4...\033[0m");
+            printf(BLUE "PHASE 4..." RESET);
             read_line(input);
             phase_4(input);
-            puts("\033[34mSo you got that one. Try this one.\033[0m");
+            printf(BLUE "So you got that one. Try this one." RESET);
             if (storyMode)
                 display_phase_4_story();
 
         case 5:
-            puts("\033[34mPHASE 5...\033[0m");
+            printf(BLUE "PHASE 5..." RESET);
             read_line(input);
             phase_5(input);
-            puts("\033[34mGood work! On to the next...\033[0m");
+            printf(BLUE "Good work! On to the next..." RESET);
             if (storyMode)
                 display_phase_5_story();
 
         case 6:
-            puts("\033[34mPHASE 6...\033[0m");
+            printf(BLUE "PHASE 6..." RESET);
             read_line(input);
             phase_6(input);
-            puts("\033[34mCool! your skill on Reverse Engineer is great.\033[0m");
+            printf(BLUE "Cool! your skill on Reverse Engineer is great." RESET);
             if (storyMode)
                 display_phase_6_story();
             break;
 
         default:
-            printf("\033[31mInvalid jump mode! Please set jump_mode between 1 and 6.\033[0m\n");
+            printf("\033[31mInvalid jump mode! Please set jump_mode between 1 and 6." RESET "\n");
             exit(1);
     }
 
     if (jumpMode == 1)
-        puts("\033[34mCongratulations!\033[0m\n");
+        printf(BLUE "Congratulations!" RESET "\n");
 
     if (secret_key) {
-        slow_put("\033[34mWelcome to the secret phase of Bomb++!\033[0m\n");
+        slow_put(BLUE "Welcome to the secret phase of Bomb++!" RESET "\n");
         slow_put("It is called");
         slow_slow_put("... THE STEINS;GATE\n");
 
         read_line(input);
         secret_phase(input);
 
-        puts("You are really a Master of Reverse Engineer!");
+        printf("You are really a Master of Reverse Engineer!");
         true_ending();
     }
 

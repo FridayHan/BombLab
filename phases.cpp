@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "utils.h"
 #include "phases.h"
+#include "colors.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ void phase_0(std::string input) {
 
 // ----------------- phase 1 -----------------
 
-char phase_1_str[] = "In 2024, the rapid advancement of AI continues to reshape society, but it also raises growing concerns. AI systems are becoming increasingly autonomous, often outpacing regulatory frameworks and ethical guidelines. AI's unchecked growth risks losing human control\0, potentially leading to unintended consequences. There is also concern about the concentration of power in a few AI-driven entities, which could manipulate data and outcomes. Now, more than ever, we must balance AI innovation with caution to ensure it benefits humanity rather than threatens it. We must take action to \033[31mcontain AI\033[0m.";
+char phase_1_str[] = "In 2024, the rapid advancement of AI continues to reshape society, but it also raises growing concerns. AI systems are becoming increasingly autonomous, often outpacing regulatory frameworks and ethical guidelines. AI's unchecked growth risks losing human control\0, potentially leading to unintended consequences. There is also concern about the concentration of power in a few AI-driven entities, which could manipulate data and outcomes. Now, more than ever, we must balance AI innovation with caution to ensure it benefits humanity rather than threatens it. We must take action to " RED "contain AI" RESET ".";
 int phase_1_offset;
 
 extern "C" bool string_not_equal(char* src, char* dest) {
