@@ -15,9 +15,13 @@ CSAPP 第三章配套实验。
 
 你的目标是拆除炸弹，无伤通过 Bomb++ 的所有关卡。
 
+
+
 ## 二、实验剧情
 
-前排提醒：剧情内容仅为增加实验趣味性所设，**对解题本身毫无影响**！（也就是说如果不愿意看，可以直接在**config.txt**中将**story_mode**设定为**false**）
+前排提醒：剧情内容仅为增加实验趣味性所设，**对解题本身毫无影响**！（也就是说如果不愿意看，可以直接在 `config.txt` 中将 `story_mode` 设定为 false）
+
+
 
 ## 三、实验内容
 
@@ -25,7 +29,7 @@ CSAPP 第三章配套实验。
 
 > 本部分不占分，也不要求必须完成。
 
-在挑战 BombLab 时，gdb 是一个非常有用的工具。为了降低本 Lab 的上手难度，并帮助大家掌握 gdb，认识这一强大的工具，yy学长（也是本学期 TA 之一）编写了这个互动式的 gdb 教程。
+在挑战 BombLab 时，gdb 是一个非常有用的工具。为了降低本 Lab 的上手难度，并帮助大家掌握 gdb，认识这一强大的工具，yy 学长（也是本学期 TA 之一）编写了这个互动式的 gdb 教程。
 
 使用方法：直接执行 `./gdb-tutor`，教程源码见 `gdb-tutor.c`。
 
@@ -35,7 +39,7 @@ CSAPP 第三章配套实验。
 
 你的目标是找到所有关卡的正确口令，让炸弹成功解除。炸弹制造者不小心给出了 `main.cpp` ，其中包含了 Bomb++ 的主要流程，你可以参考这个源文件了解炸弹的大致逻辑。
 
-如果炸弹爆炸，它将会输出 `BOOM!!!` 并退出。通过每一关后都会有通关提示，并输出一段剧情；在通关后，它将会输出 `Cool! your skill on Reverse Engineering is great.` 和普通结局剧情（NE）；而通关真结局后，它将会输出 `You are really a Master of Reverse Engineering!` 与真结局剧情（TE）。（详见 `main.cpp` ）
+如果炸弹爆炸，它将会输出 `BOOM!!!` 并退出。通过每一关后都会有通关提示，并输出一段剧情；在通关后，它将会输出 `Cool! your skill on Reverse Engineering is great.` 和普通结局剧情（NE）；而通关真结局后，它将会输出 `You are really a Master of Reverse Engineering!` 与真结局剧情（TE）。（详见 `main.cpp`）
 
 > 炸弹会读取 `fail.txt` 并在爆炸时打印其内容，如果你想要很酷炫的爆炸，可以自行修改 `fail.txt` 或直接将其删去。
 
@@ -46,11 +50,13 @@ CSAPP 第三章配套实验。
 3. 分支
 4. 递归
 5. 面向对象
-6. 循环队列
+6. 单调栈
 
 Secret. ████
 
 请注意，Secret 的解锁条件在第三关中进行了提示，或许你能在 `main.cpp` 的某个函数中发现一些违和之处……
+
+
 
 ## 四、实验步骤
 
@@ -59,17 +65,19 @@ Secret. ████
 - 使用静态分析与动态分析方法分析 Bomb++，尽力找出正确的口令
 - 编写实验报告，并在 github classroom 上提交
 
+
+
 ## 五、提交事项
 
 ### 内容要求
 
-在项目的**根目录**下，需要有**实验报告**以及正确口令 **password.txt**。注意，`password.txt` 需要满足可以用重定向秒杀 Bomb++ 的要求（我们会在后面介绍什么是重定向），我们会用这个来判断你通过了几关。
+在项目的**根目录**下，需要有**实验报告** `lab2_<学号>.pdf` 以及**正确口令** `password.txt`。注意，`password.txt` 需要满足可以用重定向秒杀 Bomb++ 的要求（我们会在后面介绍什么是重定向），我们会用这个来判断你通过了几关。
 
 你的实验报告应包含以下内容：
 
 1. 姓名和学号
 2. 每个关卡的推演过程（重点），如你推测的函数的功能
-3. 拆弹成功的截图
+3. 拆弹成功的截图（请关闭剧情模式进行截图）
 4. 如果有，请列出引用的内容以及参考的资料
 5. 意见+建议（可选）
 
@@ -86,16 +94,17 @@ Secret. ████
 
 ### 提交方法
 
-将答案写到answer_<学号>.txt中，将实验报告转换成pdf，并命名为lab2_<学号>.pdf
+将答案写到 password.txt 中，将实验报告转换成 pdf，并命名为 lab2_<学号>.pdf
 
 在终端运行以下指令：
 
 ```shell
-git add password.txt lab2_<学号>.pdf(e.g. lab2_23307130000./pdf)
+git add password.txt lab2_<学号>.pdf
+# e.g. git add password.txt lab2_23307130000.pdf
 git commit -m "xxx(可以是你的提交注释)"
-# 最后一个commit请添加tag:final
-git tag "final"
 # 将暂存区的所有更改提交到本地仓库
+git tag "final"
+# 对最后一个 commit，请添加 tag: final
 git push
 # 将本地仓库推送到远程
 ```
@@ -115,6 +124,8 @@ git push
 >
 > 实验过程非抄袭的同学，实验报告部分赋满分。
 
+
+
 ## 六、实验指导
 
 本题本质上是一道**逆向工程**题，需要你在没有源代码的情况下复原程序编写者的意图与程序的逻辑。你可能会好奇，我们为什么要学习逆向工程、学习汇编：作为科班 CS 学生，你需要知道自己写出来的程序到底会变成什么样子，到底如何运行，这样你才能知道如何写出更好的程序——正是这些底层的细节将科班程序员和培训班程序员区分开来。这个 Lab 将会帮助你搞清楚机器码 / 汇编语言具体而言如何运作。
@@ -133,11 +144,29 @@ git push
 
 至于如何使用，请参考 `gdb-tutor`。
 
-你可以去网上找一个 gdb cheetsheet（小抄），方便你查找想用的指令。我们也给出一个挺好的英文教程：[Tudor‘s gdb crash course](https://users.umiacs.umd.edu/~tdumitra/courses/ENEE757/Fall15/misc/gdb_tutorial.html)
+你可以去网上找一个 gdb cheetsheet（小抄），方便你查找想用的指令。我们也给出一个挺好的英文教程：[Tudor‘s gdb crash course](https://users.umiacs.umd.edu/~tdumitra/courses/ENEE757/Fall15/misc/gdb_tutorial.html)。或者可以直接在 Linux 环境下 `man gdb`（man 为 manual 的缩写，是用来查看系统命令和程序的手册页的命令）查看 gdb 的完整文档。
+
+以下为一些 gdb 的常用指令：
+
+| 命令（缩写）     | 作用                                          | 示例              |
+| -------------- | --------------------------------------------- | ----------------- |
+| tab            | 命令或关键字补全                                |                   |
+| run (r)        | 运行程序                                       | r                 |
+| quit (q)       | 退出 gdb                                      | q                 |
+| break (b)      | 打断点，可指定函数名或具体地址                     | b *0x400540       |
+| continue (c)   | 继续运行程序，一般是从断点处开始                   | c                 |
+| print (p)      | 打印数据，可以指定格式，也可以指定寄存器、内存、变量等 | p /x *($rsp+8)    |
+| display (disp) | 指定的内容和print一样，不过可以重复展示             | display /5i $pc   |
+| info (i)       | 获取信息，可指定寄存器、函数、断点信息等             | i r{egister} pc   |
+| delete         | 删除gdb指定的内容，可指定断点等（默认是断点）        | d {break} 1       |
+| stepi (si)     | 执行一条指令，后可跟数字表示执行多条                | si 10             |
+| examine (x)    | 代码检查，后跟具体地址，可以指定输出的方式和格式      | x /10i $pc        |
+| call           | 在gdb中进行函数调用（很神奇的功能）                | call printf("\n") |
+| backtrace (bt) | 查看调用栈，即函数调用的情况                       | bt                |
 
 ### 静态分析
 
-### 反汇编
+#### 反汇编
 
 我们回顾一下C程序的编译过程：源代码 -> 汇编代码 -> 机器码，中间两步分别称为**编译**与**汇编**。
 
@@ -147,11 +176,11 @@ git push
 
 我们在命令行中输入 `objdump -d ./bomb > bomb.S` 就可以获得反汇编文件 `bomb.S`。
 
-`objdump --help` 会打印出 objdump 的所有用法，并且会给出精简的解释。
+`objdump --help` 会打印出 objdump 的所有用法，并且会给出精简的解释。`man objdump` 会打印出详尽的解释。
 
 > **助教の温馨提示**
 >
-> 你可以尝试在`objdump`后加上 `-D` 和/或 `-x` 和/或 `-C`，就像上面出现的`-d`一样。你可以通过搜索或读文档的方式了解这会导致什么后果；TA 相信这几个参数会对你的实验有很大帮助！
+> 你可以尝试在 `objdump` 后加上 `-D` 和/或 `-x` 和/或 `-C`，就像上面出现的 `-d` 一样。你可以通过搜索或读文档的方式了解这会导致什么后果；TA 相信这几个参数会对你的实验有很大帮助！
 
 > **X86 / AMD64 汇编语言的格式**
 >
@@ -164,7 +193,7 @@ git push
 >
 > 本课程上课教学时使用的语法是 AT&T，这也是 objdump 默认使用的语法。但我们同样推荐你试试 Intel 语法，因为这是安全研究人员更常用的一种语法。想让 objdump 输出语法变为 Intel，只需要给 objdump 添加参数 `-M intel`。
 
-### 阅读汇编
+#### 阅读汇编
 
 在拿到汇编代码文件后，我们就需要通过分析它来理解程序的逻辑。如果是一个简短的函数，或许汇编也就几十行；但你很有可能会遇到百来行的函数。如何应对这种复杂的代码？
 
@@ -175,6 +204,126 @@ git push
 这是一个伪代码的例子，我们同样可以将这个方法运用到汇编语言中。构造 CFG 的基础方法很简单：我们只需要把不含跳转代码当作一个 Block，然后把 Block 们连接起来即可。你可以在草稿纸上使用这个方法，将函数的跳转逻辑理清楚。不要小看了 CFG 的作用，亲自试试吧，或许你会从此觉得读汇编语言也不过如此。
 
 另外一种推荐的技巧是……**将汇编代码打印出来**。没错，虽然我知道手写代码一定是痛苦的体验，但在纸上阅读汇编语言代码确实是一种推荐的方法。这是因为，汇编语言的阅读可能需要大量的标注，在纸上标记会方便很多。不过也请注意，Bomb++ 的汇编代码很长，包含了许多不会执行或与实验无关的函数。你可以只在遇到应付不了的关卡时才选择把看不懂的那些函数打印出来。
+
+下面给出一些常见结构的汇编代码：
+
+##### 条件判断
+
+C 语言：
+```cpp
+if (array == 0) return;
+```
+
+汇编语言：
+```assembly
+endbr64 
+test   %rdi,%rdi                       # 让函数第一个参数和自己作与运算
+je     11cb <for_sum(int*, int)+0x22>  # 若结果为 0，则跳转；相当于判断参数是否为 0，为 0 则跳转     
+```
+
+##### 循环结构
+
+C 语言：
+```cpp
+s = 0
+for (int i = 0; i < size; ++i) s += array[i];
+```
+
+汇编语言：
+```assembly
+mov    $0x0,%eax                       # 初始化自增条件变量 i = 0
+mov    $0x0,%edx                       # 初始化总和 s = 0
+cmp    %esi,%eax                       # 判断条件变量是否满足条件 i < size ?
+jge    11d0 <for_sum(int*, int)+0x27>  # 大于或等于则跳出循环
+add    (%rdi,%eax,4),%edx              # 用 i 进行数组索引 base + i*4 => array[i]; s += array[i]
+add    $0x1,%eax                       # 自增 i++
+jmp    11bc <for_sum(int*, int)+0x13>  # 回到比较的地方
+```
+
+##### switch case 结构
+
+1. 打表：如果 case 的不同条件比较紧凑规律（比如 0、1、2、3......），则将 case 的条件作为索引、对应的地址（可能是地址偏移量）作为值，创建一个表格存放在内存中。
+
+| case | addr   |
+| ---- | ------ |
+| 0    | 0x1000 |
+| 1    | 0x1004 |
+| 2    | 0x1008 |
+| 3    | 0x1010 |
+
+2. 类似 if else 嵌套：如果 case 比较稀疏，则通过采用连续的比较和条件跳转指令
+
+```assembly
+cmp    $0x61,%dil
+je     1224 <switch_case2(char)+0x1c>
+cmp    $0x7a,%dil
+je     1227 <switch_case2(char)+0x1f>
+cmp    $0xa,%dil
+je     122b <switch_case2(char)+0x23>
+lea    0x1(%rdi),%eax
+retq
+```
+
+##### 递归
+
+函数内部调用了函数本身，需要注意对 callee-save 寄存器的保存和使用
+
+C 语言：
+```cpp
+int recursion(int x){ // 求斐波那契数
+    if (x < 2) return x;
+    return recursion(x-1) + recursion(x-2);
+}
+```
+
+汇编语言：
+```assembly
+000000000000122c <recursion(int)>:
+push   %rbp                       # 保存 rbp
+push   %rbx                       # 保存 ebx
+mov    %edi,%ebx                  # 保存第一个参数 x，因为 x 和 rdi 寄存器后续函数都要使用，因此将 x 保存在新的寄存器中（这里是 ebx），防止后续的函数将 rdi 中存放的 x 覆盖掉，而 ebx 因为是 callee-save，因此提前保存了它
+cmp    $0x1,%edi                 
+jle    1258 <recursion(int)+0x2c> # 小于等于 1 则跳转，相当于 x < 2
+lea    -0x1(%rdi),%edi            # x-1
+callq  122c <recursion(int)>      # recursion(x-1)
+mov    %eax,%ebp                  # 将得到的返回值放在 rbp 中，因为 rbp 是 callee-save，要提前保存
+lea    -0x2(%rbx),%edi            # x-2，这里也用到了 x，因此需要提前保存x
+callq  122c <recursion(int)>
+...
+```
+
+##### struct
+
+内部变量按顺序排列，需要对齐
+
+```cpp
+typedef struct {
+    char a = 'y';             // root     
+    unsigned b = 2333;        // root+0x4 虽然之前的 char 只占了 1 个字节，但是 unsigned 需要 4 字节对齐
+    float c = 123.123;        // root+0x8，0xb-0xf 之间的数值为 0
+    double d = 1930.1231313;  // root+0x10 虽然之前的 float 只占了 4 个字节，但是 double 需要 8 字节对齐
+} node;
+```
+
+##### C++虚函数
+
+类的非静态函数调用时，默认第一个参数是指向该对象的指针 **this**
+
+每一个类有唯一的一个虚函数表（vtable，其中只包含虚函数的指针），不是每个对象都有一个 vtable，恰恰是每个同一个类的对象都有一个指针，这个指针指向该类的 vtable（当然，前提是这个类包含虚函数）。那么，每个对象只额外增加了一个指针的大小。
+
+```assembly
+mov    $0x8,%edi                            
+callq  1090 <operator new(unsigned long)@plt>  # 申请了 8 个字节的空间
+mov    %rax,%rbx				                       # 保存该空闲空间的起始地址，即指向对象的指针
+mov    %rax,%rdi
+callq  158c <B::B()>                           # 调用初始化函数，进行初始化，第一个参数为空闲空间的起始地址，即指向对象的指针 this
+                                               # 对象已经创建好
+mov    (%rbx),%rax                             # 对象的内容只包含一个指针，这条指令通过 this 指针获取对象的内容，即类的 vtable 的起始地址
+mov    (%rax),%rdx                             # 根据类的 vtable 起始地址获取要调用的函数的地址
+mov    $0x2,%esi                               # 函数的第二个参数为 2
+mov    %rax,%rdi
+callq  *%rdx                                   # 调用 rdx 位置处的函数（* 号只是做标识用，并非取地址），参数分别为对象的地址（this）和 2
+```
 
 ### 其他实验帮助
 
@@ -210,9 +359,9 @@ $ cat 1.txt            # 假设我们有这么一个文件
 GODEL
 ESCHER
 BACH
-$ cat 1.txt | tail -n1 # 打印1.txt的最后一行
+$ cat 1.txt | tail -n1 # 打印 1.txt 的最后一行
 BACH
-$ cat 1.txt | grep CH  # 寻找1.txt中带有CH的行
+$ cat 1.txt | grep CH  # 寻找 1.txt 中带有 CH 的行
 ESCHER
 BACH
 ```
@@ -245,13 +394,13 @@ $ cat password.txt - | ./bomb
 
 > **助教の温馨提示**
 >
-> 使用这种操作时注意，由于 Bomb++ 每一阶段都会重新读取一行，所以文件结尾多出的换行符会导致 Bomb++ 下一阶段读到一个寂寞，从而导致炸弹爆炸。因此，在存放口令的文本文件中，注意不要多加一个空白的结尾行。
+> 使用这种操作时注意，由于 Bomb++ 每一阶段都会重新读取一行，所以文件结尾多出的换行符会导致 Bomb++ 下一阶段读到一个寂寞，从而导致炸弹爆炸。因此，在存放口令的文本文件中，在最后一个口令输入完毕后，只能有一个空行。
 
 > **文件拓展名**
 >
 > 熟悉 Windows 的各位同学一定对诸如 `.exe` `.docx` `.xls` `.png` `.jpeg` 等拓展名见惯不惯了，Windows 系统会通过文件名中的这些后缀来判断如何打开这个程序。
 >
-> 不过在使用 Linux 时，通常不需要你为文件加上拓展名，这是因为 Linux 系统往往通过文件头中的魔数来区分文件类型。（这个概念我们在 DataLab 讲义中简单介绍过，如果你不知道的话可以自己去百度/谷歌看看）因此，我们在这里为文本文件标上 `.txt` 后缀类似于注释一样，是为了让大家看得更清楚一些。
+> 不过在使用 Linux 时，通常不需要你为文件加上拓展名，这是因为 Linux 系统往往通过文件头中的**魔数**来区分文件类型。因此，我们在这里为文本文件标上 `.txt` 后缀类似于注释一样，是为了让大家看得更清楚一些。
 
 #### “超纲”的汇编指令
 
@@ -261,17 +410,21 @@ $ cat password.txt - | ./bomb
 
 如果遇到其他没见过的汇编指令，我们建议自己查询互联网。如果你有钻研的精神，欢迎你试着查询 Intel 的官方手册 [英特尔® 64 位和 IA-32 架构开发人员手册](https://www.intel.cn/content/www/cn/zh/architecture-and-technology/64-ia-32-architectures-software-developer-vol-1-manual.html)，真正理解这个指令的细节。在查询这种奇厚无比的手册时，请一定记得利用好目录以及搜索功能。
 
+
+
 ## 七、参考资料 & 推荐资料
 
 - <http://csapp.cs.cmu.edu/3e/labs.html> 原版 Lab
-- 本实验参考 22、23 年的实验开发，感谢yy学长的支持
+- 本实验参考 22、23 年的实验开发，感谢 lrx 学长和 yy 学长的支持
 
 - [从汇编角度学习 C/C++ - 看雪](https://bbs.kanxue.com/homepage-category-835440-293.htm)
 
 
+
 ## 八、实验彩蛋
 
+* 2023ICS BombLab：
 <image src="meme.jpg" style="width: 320px; height: 320px;display: flex; justify-content: center; align-items: center;">
 
 * 曾经可能会出现的剧情
-  <img src="PlotAdvice.png" style="width: 400px;">
+  <img src="PlotAdvices.png" style="width: 400px;">
