@@ -127,6 +127,9 @@ int main()
     if (jumpMode == 1)
         puts("\033[34mCongratulations!\033[0m\n");
 
+    if (storyMode)
+        display_ending();
+
     if (secret_key) {
         slow_put("\033[34mWelcome to the secret phase of Bomb++!\033[0m\n");
         slow_put("It is called");
@@ -137,6 +140,9 @@ int main()
 
         puts("You are really a Master of Reverse Engineer!");
         true_ending();
+
+        if (storyMode)
+            display_secret_ending();
     }
 
     return 0;

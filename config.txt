@@ -4,5 +4,5 @@
 # student_id: Your Student ID, used to generate personalized answers (e.g., 2330713xxxx)
 
 jump_mode = 1 # Ensure this is set to 1 to provide the final answer.
-story_mode = false
+story_mode = true
 student_id = 22307130470
