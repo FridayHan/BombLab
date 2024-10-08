@@ -4,6 +4,10 @@ title = BombLab
 
 > Deadline：2024-10-23 23:59:59
 
+> 负责助教：
+  * 韩周吾 22307130440@m.fudan.edu.cn
+  * 俞霁洲 22307130469@m.fudan.edu.cn
+
 ## 一、实验简介
 
 CSAPP 第三章配套实验。
@@ -56,7 +60,7 @@ CSAPP 第三章配套实验。
 
 Secret. ████
 
-请注意，Secret 的解锁条件在第三关中进行了提示，或许你能在 `main.cpp` 的某处发现一些违和之处……
+请注意，Secret 的解锁条件在第三关中进行了提示，或许你能在 `main.cpp` 的某个函数中发现一些违和之处……
 
 
 
@@ -66,16 +70,6 @@ Secret. ████
 - 跟随 gdb-tutor 学习 gdb 的基础使用方法
 - 使用静态分析与动态分析方法分析 Bomb++，尽力找出正确的口令
 - 编写实验报告，并在 github classroom 上提交
-
-- 文件阐释如下：
-  - main.cpp是本实验的主程序，用来理解程序的逻辑，请不要修改。
-  - ./bomb 是可执行文件，需要你使用静态分析与动态分析方法分析得到flag。
-  - fail.txt 是炸弹的输出文件，你也可以放入你喜欢的样式。
-  - config.txt 是本实验的配置文件，其中包含了实验的一些配置信息：
-    - `jump_mode` 是跳关模式，默认为1，请确保最后的文件可以在此处为1时，正确运行。（使用方法如下：当你完成前两关，可以将此设为3，这样运行程序将进入第3关，无需输入前两关的答案。）
-    - `story_mode` 是故事模式，默认为true。如果你不想看剧情，可以将 `story_mode` 设为 false。
-    - `student_id` 是你的学号。（**请务必写入，答案将根据学号生成**，每个人的答案都不一样，所以也请不要抄袭）
-
 
 
 
@@ -117,12 +111,12 @@ git push
 
 ### 评分
 
-| 项目                | 分值 |
+| 项目                 | 分值 |
 | ------------------- | ---- |
-| 提交格式正确        | 5%   |
-| 通过正常关卡 6\*13% | 78%  |
-| 通过隐藏关卡        | 7%   |
-| 实验报告            | 10%  |
+| 提交格式正确          | 5%   |
+| 通过正常关卡 6\*13%   | 78%  |
+| 通过隐藏关卡          | 7%   |
+| 实验报告             | 10%  |
 
 另：抄袭倒扣分！！勿谓言之不预。
 
@@ -430,11 +424,11 @@ $ cat password.txt - | ./bomb
 ## 八、实验彩蛋
 
 * 2023ICS BombLab：
-<image src="meme.jpg" style="width: 320px; height: 320px;display: flex; justify-content: center; align-items: center;">
+
+<img src="meme.png" style="width: 320px; height: 320px;display: flex; justify-content: center; align-items: center;">
+
+
 
 * 曾经可能会出现的剧情
-  <img src="PlotAdvices.png" style="width: 400px;">
 
-* 负责助教：
-  * 韩周吾 22307130440@m.fudan.edu.cn
-  * 俞霁洲 22307130469@m.fudan.edu.cn
+  <img src="PlotAdvices.png" style="width: 400px; display: flex; justify-content: center; align-items: center;">
