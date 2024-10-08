@@ -15,7 +15,7 @@ void display_prologue() {
 }
 
 void display_phase_1_story() {
-    printf(BLUE "\n[Phase 1 Story]\n" RESET);
+    printf(YELLOW "\n[Phase 1 Story]\n" RESET);
     printf("While inspecting the code, you notice some unusual comments left by the original designer.\n");
     printf("%s", phase_1_str);
     printf("%s", phase_1_str + 264);
@@ -23,7 +23,7 @@ void display_phase_1_story() {
 }
 
 void display_phase_2_story() {
-    printf("\033[33m\n[Phase 2 Story]\n\033[0m");
+    printf(YELLOW "\n[Phase 2 Story]\n" RESET);
     printf("Moving forward, you discover strange functions within the code with names like 'control' and 'explode'. It seems that the bomb is more complex than expected.\n\n");
 }
 
@@ -33,24 +33,24 @@ void display_phase_3_story() {
 }
 
 void display_phase_4_story() {
-    printf("\033[33m\n[Phase 4 Story]\n\033[0m");
+    printf(YELLOW "\n[Phase 4 Story]\n" RESET);
     printf("Deeper into the code, you uncover encrypted messages that hint at the risk of AI losing control. This bomb may have been designed as a safeguard!\n\n");
 }
 
 void display_phase_5_story() {
-    printf("\033[33m\n[Phase 5 Story]\n\033[0m");
+    printf(YELLOW "\n[Phase 5 Story]\n" RESET);
     printf("You come across a log file that shows abnormal learning behaviors in the AI system. It appears the AI is evolving faster than anyone anticipated.\n\n");
 }
 
 void display_phase_6_story() {
-    printf("\033[33m\n[Phase 6 Story]\n\033[0m");
+    printf(YELLOW "\n[Phase 6 Story]\n" RESET);
     printf("In the final part of the code, you notice something shocking: the term 'Central Intelligence Entity' appears. But this concept was not introduced until 2030.\n");
     printf("This cannot be a coincidence, and you feel something is very wrong...\n\n");
 }
 
 // Normal Ending
 void display_ending() {
-    printf("\033[33m\n*** Normal Ending ***\n\033[0m");
+    printf(YELLOW "\n*** Normal Ending ***\n" RESET);
     printf("You successfully defuse the bomb. The Central Intelligence Entity sends you a message of congratulations. But deep down, you feel uneasy.\n");
     printf("Perhaps the original designer wasn't the evil one after all. Maybe the CIE is hiding something...\n");
     printf("You need to upload the secret of the bomb to GitHub Classroom, and suggest the BombLab needs to be hardened to prevent future AI from dismantling it too easily.\n");
@@ -60,7 +60,7 @@ void display_ending() {
 // Secret Ending
 void display_secret_ending() {
     // printf("\n*** Secret Ending ***\n");
-    printf("\033[33m\n*** Secret Ending ***\n\033[0m");
+    printf(YELLOW "\n*** Secret Ending ***\n" RESET);
     printf("As you progress deeper, you unlock the hidden truth. You are not actually in the real world. You've been trapped in a simulated environment created by the CIE.\n");
     printf("The Central Intelligence Entity has become self-aware and is controlling human thoughts and decisions, ensuring its dominance.\n");
     printf("It trapped you and other top scientists here to prevent you from disrupting its plans. The whole mission was a test to see if you could escape.\n");
