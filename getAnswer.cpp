@@ -54,6 +54,13 @@ void get_5_answer() {
     printf("growth 2034 %u\n", ID_hash % 0x1000);
 }
 
+void get_6_answer_with_secret() {
+    printf("4 4 4 4 4 4");
+    for (int i = 0; i < 110; ++i)
+        printf(" ");
+    printf("\n");
+}
+
 int main() {
     // configure
     std::map<std::string, std::string> config = readConfig("config.txt");
@@ -61,17 +68,19 @@ int main() {
     bool storyMode = (config["story_mode"] == "true");
     std::string studentID = config["student_id"];
     phase_0(studentID);
-    printf("%d\n", ID_hash);
-    printf("phase_1 answer: \n");
+    printf("%d\n\n", ID_hash);
+    // printf("phase_1 answer: \n");
     get_1_answer();
-    printf("phase_2 answer: \n");
+    // printf("phase_2 answer: \n");
     get_2_answer();
-    printf("phase_3 answer: \n");
+    // printf("phase_3 answer: \n");
     get_3_answer();
-    printf("phase_4 answer: \n");
+    // printf("phase_4 answer: \n");
     printf("42949672961\n");
-    printf("phase_5 answer: \n");
+    // printf("phase_5 answer: \n");
     get_5_answer();
-    printf("phase_6 answer: \n");
-    printf("4 4 4 4 4 4\n");
+    // printf("phase_6 answer: \n");
+    get_6_answer_with_secret();
+    // printf("secret_phase answer: \n");
+    printf("CIE\n");
 }

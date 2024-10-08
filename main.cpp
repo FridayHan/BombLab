@@ -128,6 +128,9 @@ int main()
     if (jumpMode == 1)
         printf(BLUE "Congratulations!" RESET "\n");
 
+    if (storyMode)
+        display_ending();
+
     if (secret_key) {
         slow_put(BLUE "Welcome to the secret phase of Bomb++!" RESET "\n");
         slow_put("It is called");
@@ -138,6 +141,9 @@ int main()
 
         printf("You are really a Master of Reverse Engineer!");
         true_ending();
+
+        if (storyMode)
+            display_secret_ending();
     }
 
     return 0;
