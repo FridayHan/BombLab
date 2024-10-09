@@ -413,8 +413,7 @@ $ cat password.txt - | ./bomb
 ## 七、参考资料 & 推荐资料
 
 - <http://csapp.cs.cmu.edu/3e/labs.html> 原版 Lab
-- 本实验参考 22、23 年的实验开发，感谢 lrx 学长和 yy 学长的支持
-
+- 本实验参考 22、23 年的实验开发
 - [从汇编角度学习 C/C++ - 看雪](https://bbs.kanxue.com/homepage-category-835440-293.htm)
 
 
