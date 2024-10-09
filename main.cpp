@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <map>
 #include <cstring>
+#include <vector>
 #include "utils.h"
 #include "phases.h"
 #include "story.h"
@@ -46,6 +47,8 @@ void read_line(char* input)
     while (getchar() != '\n'); // clear the input buffer
 }
 
+int score = 0;
+
 int main()
 {   
     long secret_key = 0;
@@ -72,7 +75,7 @@ int main()
         switch (phase)
         {
             case 1:
-                printf(BLUE "PHASE 1..." RESET);
+                printf(BLUE "PHASE 1...\n" RESET);
                 read_line(input);
                 phase_1(input);
                 printf(BLUE "Phase 1 defused. How about the next one?" RESET);
@@ -82,7 +85,7 @@ int main()
                 break;
 
             case 2:
-                printf(BLUE "PHASE 2..." RESET);
+                printf(BLUE "PHASE 2...\n" RESET);
                 read_line(input);
                 phase_2(input);
                 printf(BLUE "That's number 2. Keep going!" RESET);
@@ -92,7 +95,7 @@ int main()
                 break;
 
             case 3:
-                printf(BLUE "PHASE 3..." RESET);
+                printf(BLUE "PHASE 3...\n" RESET);
                 read_line(input);
                 phase_3(input);
                 printf(BLUE "Halfway there!" RESET);
@@ -102,7 +105,7 @@ int main()
                 break;
 
             case 4:
-                printf(BLUE "PHASE 4..." RESET);
+                printf(BLUE "PHASE 4...\n" RESET);
                 read_line(input);
                 phase_4(input);
                 printf(BLUE "So you got that one. Try this one." RESET);
@@ -112,7 +115,7 @@ int main()
                 break;
 
             case 5:
-                printf(BLUE "PHASE 5..." RESET);
+                printf(BLUE "PHASE 5...\n" RESET);
                 read_line(input);
                 phase_5(input);
                 printf(BLUE "Good work! On to the next..." RESET);
@@ -122,7 +125,7 @@ int main()
                 break;
 
             case 6:
-                printf(BLUE "PHASE 6..." RESET);
+                printf(BLUE "PHASE 6...\n" RESET);
                 read_line(input);
                 phase_6(input);
                 printf(BLUE "Cool! your skill on Reverse Engineer is great." RESET);
@@ -137,7 +140,7 @@ int main()
         }
     }
 
-    if (testPhases = [1, 2, 3, 4, 5, 6])
+    if (testPhases == std::vector<int>{1, 2, 3, 4, 5, 6})
         printf(BLUE "Congratulations!" RESET "\n");
 
     if (storyMode)
@@ -161,7 +164,7 @@ int main()
             display_secret_ending();
     }
 
-    void print_score();
+    printf("\n\n------------Your score: %d\n", score);
 
     return 0;
 }

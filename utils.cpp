@@ -3,6 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
+#include <map>
+#include <fstream>
+#include <vector>
+#include <sstream>
 
 void explode_bomb() {
     printf("BOOM!!!\n");
@@ -24,7 +29,7 @@ void explode_bomb() {
     exit(1);
 }
 
-std::pair<std::map<std::string, std::string>, std::vector<int> > readConfig(const std::string& filename)
+std::pair<std::map<std::string, std::string>, std::vector<int>> readConfig(const std::string& filename)
 {
     std::ifstream configFile(filename);
     std::map<std::string, std::string> config;
@@ -107,9 +112,4 @@ void read_six_numbers(char *buf, int *nums)
 void true_ending()
 {
     puts("You have successfully defused the bomb!");
-}
-
-void print_score()
-{
-    printf("Your score: %d\n", score);
 }
