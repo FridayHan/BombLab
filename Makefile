@@ -15,7 +15,7 @@ SRCS = main.cpp utils.cpp phases.cpp story.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Output executable
-TARGET = bomb
+TARGET = bomb++
 
 # Default rule: Build the target executable
 all: $(TARGET)
