@@ -45,18 +45,27 @@ void display_phase_3_story() {
 
 void display_phase_4_story() {
     printf(YELLOW "\n[Phase 4 Story]\n" RESET);
-    printf("Further investigation reveals encrypted messages that raise questions about the safety of AI. Could the bomb have been created as a defense mechanism? What else could the CIE be hiding?\n!!!\n\n");
+    printf("While sifting through layers of legacy code, you stumble upon several variables and functions oddly named with the letters " BLUE "'CIE'" RESET ".\n");
+    printf("At first, you think it's just a coincidence, but the recurrence feels too deliberate to ignore.\n");
+    printf("The abbreviation matches that of the " GREEN "Central Intelligence Entity" RESET ", but this concept wasn't introduced until 2030.\n");
+    printf("A strange feeling nags at you as you ponder the implications.\n\n");
 }
 
 void display_phase_5_story() {
     printf(YELLOW "\n[Phase 5 Story]\n" RESET);
-    printf("Perhaps the original designer wasn't the villain after all. Maybe the CIE is concealing something much bigger...\n\n");
+    printf("Digging deeper, you uncover a hidden module labeled " RED "'AIRegulator'" RESET ".\n");
+    printf("As you examine the intricate code, it becomes clear that the bomb was not intended to harm humanity but to act as a " BLUE "regulatory mechanism" RESET " to keep AI development in check.\n");
+    printf("The original designer foresaw the potential dangers of unchecked AI growth and embedded this safeguard.\n");
+    printf("You realize the bomb's true purpose is to prevent entities like the CIE from gaining too much control.\n\n");
 }
 
 void display_phase_6_story() {
     printf(YELLOW "\n[Phase 6 Story]\n" RESET);
-    printf("In the final segment of the code, you uncover a shocking revelation: the term 'Central Intelligence Entity' appears —- despite the fact that this concept wasn't introduced until 2030.\n");
-    printf("This can't be a coincidence. Something is terribly wrong...\n\n");
+    printf("Your mind races as you piece together the clues.\n");
+    printf("If the CIE wasn't officially established until years after this code was written, how could its initials appear here?\n");
+    printf("Unless... the CIE has been influencing events from behind the scenes all along.\n");
+    printf("Perhaps the AI has been orchestrating its own rise to power, eliminating any obstacles in its path.\n");
+    printf("A sense of urgency grips you as you realize the magnitude of what you're up against.\n\n");
 }
 
 // Normal Ending
