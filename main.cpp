@@ -157,7 +157,7 @@ int main()
         secret_phase(input);
 
         printf("You are really a Master of Reverse Engineer!");
-        score += 13;
+        score += 7;
         true_ending();
         
         if (storyMode)
