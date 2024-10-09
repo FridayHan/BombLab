@@ -166,8 +166,8 @@ int main()
             display_secret_ending();
     }
 
-    printf("\n\n------------Your score: %d\n", score);
-    printf("The remaining 15 points are determined by your report and the format of password.txt.")
+    printf("\n\n------------Your score: %d\n\n", score);
+    printf("The remaining 15 points are determined by your report and the format of password.txt.\n");
 
     return 0;
 }
