@@ -84,9 +84,9 @@ void display_secret_ending() {
     printf("But this will require digging deeper into the world of CTF.\n");
     printf("Are you ready for the challenge? (y/n)\n");
     slow_slow_put("......");
-    slow_slow_put("yyyyyyy");
-    slow_put("yyyyyyyyyyyyyyyyyyyyyy\n");
-    slow_slow_put("Welcome to the world of CTF!!!!!!!!\n");
+    slow_slow_put("yyyyyy");
+    slow_put("yyyyyyyyyyyyyyyyyyyy\n");
+    slow_slow_put("Welcome to the world of CTF!!!!!!\n");
 
     printf(YELLOW "\n*** The End ***\n" RESET);
 }

@@ -65,7 +65,8 @@ int main()
 
     // initialize
     printf(BLUE "Please enter your Student ID (23307xxxxxx) in the config.txt file.\n"
-       "Note: Different Student IDs will generate different answers. Therefore, do not attempt to use someone else's ID for the answers." RESET "\n");
+       "Note: Different Student IDs will generate different answers. "
+       "Therefore, do not attempt to use someone else's ID for the answers." RESET "\n");
     phase_0(studentID);
     if (storyMode)
         display_prologue();
@@ -166,7 +167,7 @@ int main()
             display_secret_ending();
     }
 
-    printf("\n\n------------Your score: %d\n\n", score);
+    printf("\n\n---------- Your score: %d ----------\n\n", score);
     printf("The remaining 15 points are determined by your report and the format of password.txt.\n");
 
     return 0;
