@@ -63,8 +63,7 @@ void get_6_answer_with_secret() {
 
 int main() {
     // configure
-    std::map<std::string, std::string> config = readConfig("config.txt");
-    int jumpMode = std::stoi(config["jump_mode"]);
+    auto [config, testPhases] = readConfig("config.txt"); 
     bool storyMode = (config["story_mode"] == "true");
     std::string studentID = config["student_id"];
     phase_0(studentID);

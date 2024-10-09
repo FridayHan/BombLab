@@ -1,8 +1,8 @@
 # Configurations for BombLab
-# jump_mode: Set to the phase you want to jump to (1-6, 1 for no jump, 2-6 to skip phases before this one)
+# test_phase: Specify which phases to test (e.g., 1, 4, 5 to test only phases 1, 4, and 5). Set to 1, 2, 3, 4, 5, 6 to test all phases.
 # story_mode: Set to 'true' to enable story mode, 'false' to disable
 # student_id: Your Student ID, used to generate personalized answers (e.g., 2330713xxxx)
 
-test_phase = 1, 2, 3, 4, 5, 6 # Ensure this is set to 1 to provide the final answer.
-story_mode = false
+test_phase = 1, 2, 3, 4, 5, 6 # Ensure this is set to 1, 2, 3, 4, 5, 6 to provide the final answer.
+story_mode = true
 student_id = 22307130470

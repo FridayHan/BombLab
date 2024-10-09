@@ -1,4 +1,3 @@
-#include "utils.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,6 +7,7 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include "utils.h"
 
 void explode_bomb() {
     printf("BOOM!!!\n");

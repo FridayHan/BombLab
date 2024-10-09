@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <sys/ptrace.h>
 #include <unistd.h>
-#include <signal.h>
 #include <time.h>
 
 #define breakp __asm__("int3")
