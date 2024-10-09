@@ -33,14 +33,20 @@ void display_phase_1_story() {
 
 void display_phase_2_story() {
     printf(YELLOW "\n[Phase 2 Story]\n" RESET);
-    printf("As you dig deeper, you encounter strange functions named " RED "'control'" RESET " and " RED "'explode'" RESET ".\n");
-    printf("The bomb is far more sophisticated than you initially thought.\n\n");
+    printf("As you delve deeper into the codebase, you begin to notice anomalies.\n");
+    printf("Mysterious functions with cryptic names like " RED "'control'" RESET " and " RED "'explode'" RESET " catch your eye.\n");
+    printf("The realization dawns on you: " BLUE "the bomb is far more sophisticated than you initially thought" RESET ".\n");
+    printf("It's not just a simple virus but a complex threat designed to adapt and evolve.\n");
+    printf("Time is running out, and you must understand these functions to defuse the bomb.\n\n");
 }
 
 void display_phase_3_story() {
     printf(YELLOW "\n[Phase 3 Story]\n" RESET);
-    printf("You discover an alarming string in the code, which hints at " BLUE "the designer's concern over the rapid advancement of AI technology" RESET ".\n");
-    printf("Was this bomb meant to be a safeguard?\n\n");
+    printf("You stumble upon an encrypted string buried deep within the code.\n");
+    printf("After decryption, the message reveals: " BLUE "\"The unchecked advancement of AI will be humanity's downfall.\"" RESET "\n");
+    printf("The words echo the designer's concern over rapid AI progression.\n");
+    printf("Was this bomb meant to be a safeguard?\n");
+    printf("You begin to question the true intentions of the original designer.\n\n");
 }
 
 void display_phase_4_story() {
