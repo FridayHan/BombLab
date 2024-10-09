@@ -33,7 +33,7 @@ CSAPP 第三章配套实验。
 
 > 本部分不占分，也不要求必须完成。
 
-在挑战 BombLab 时，gdb 是一个非常有用的工具。为了降低本 Lab 的上手难度，并帮助大家掌握 gdb，认识这一强大的工具，yy 学长（也是本学期 TA 之一）编写了这个互动式的 gdb 教程。
+在挑战 BombLab 时，gdb 是一个非常有用的工具。为了降低本 Lab 的上手难度，并帮助大家掌握 gdb，认识这一强大的工具，我们编写了这个互动式的 gdb 教程。
 
 使用方法：直接执行 `./gdb-tutor`，教程源码见 `gdb-tutor.c`。
 
@@ -43,7 +43,7 @@ CSAPP 第三章配套实验。
 
 你的目标是找到所有关卡的正确口令，让炸弹成功解除。炸弹制造者不小心给出了 `main.cpp` ，其中包含了 Bomb++ 的主要流程，你可以参考这个源文件了解炸弹的大致逻辑。
 
-如果炸弹爆炸，它将会输出 `BOOM!!!` 并退出。通过每一关后都会有通关提示，并输出一段剧情；在通关后，它将会输出 `Cool! your skill on Reverse Engineering is great.` 和普通结局剧情（NE）；而通关真结局后，它将会输出 `You are really a Master of Reverse Engineering!` 与真结局剧情（TE）。（详见 `main.cpp`）
+如果炸弹爆炸，它将会输出 `BOOM!!!` 并退出。通过每一关后都会有通关提示（并输出一段剧情）；在通关后，它将会输出 `Cool! your skill on Reverse Engineering is great.` （和普通结局剧情 (NE)）；而通关真结局后，它将会输出 `You are really a Master of Reverse Engineering!` （与真结局剧情 (TE)）。（详见 `main.cpp`）
 
 > 炸弹会读取 `fail.txt` 并在爆炸时打印其内容，如果你想要很酷炫的爆炸，可以自行修改 `fail.txt` 或直接将其删去。
 
@@ -60,21 +60,24 @@ Secret. ████
 
 请注意，Secret 的解锁条件在第三关中进行了提示，或许你能在 `main.cpp` 的某个函数中发现一些违和之处……
 
-> **助教の温馨提示**
->
-> 关于 `config.txt`：
+> **关于 config.txt**
 >
 > 1. 本次 BombLab 采用了个性化答案制度，即：每个人的答案会依据自己的学号发生变化。**请务必填写自己的学号！**
 >
->    这一操作位于 `phase_0` 中，**这个函数中的所有内容都和 Bomb++ 的内容无关！不需要阅读！不需要阅读！！不需要阅读！！！**
+>    这一操作位于 `phase_0` 中，**这个函数中的所有内容都和 Bomb++ 的内容无关！不需要阅读！不需要阅读！！不需要阅读！！！**（其中包括了各种 `EVP` 开头的函数）
+>
+>    另外，助教会根据每个人的学号来判断答案，如果漏填学号或者填错学号导致的错误，助教一概不负责！
 >
 > 2. 为了便利，本次 BombLab 提供了**跳题**选项！在 `config.txt` 中设置 `test_phase`，Bomb++ 只会来测试相应的关卡。
-> 例如：第3关卡关，你可以将`test_pahse`设置为`1, 2, 4, 5, 6`, 然后运行 `./bomb` 即可跳过3。
+>
+>    例如：第 3 关卡关，你可以将 `test_pahse` 设置为 `1, 2, 4, 5, 6`, 然后运行 `./bomb` 即可跳过3。
+>
 >    请确保在提交时，`config.txt` 中，`test_phase` 被设置为 `1, 2, 3, 4, 5, 6`，以便助教们直接测试你的答案。
 >
 > 3. 关于剧情模式：~~两位助教讨论了一晚上想出来的剧情~~剧情模式是为了增加做实验过程中的乐趣所设，我们真心希望大家写 Lab 时能乐在其中！当然，如果你觉得剧情模式的大段输出影响到了你正常解题，可以在 `config.txt` 中将 `story_mode` 设置为 false。
 >
 >    请确保在提交时，`config.txt` 中，`story_mode` 被设置为 `false`。
+
 
 
 ## 四、实验步骤
@@ -101,7 +104,7 @@ Secret. ████
 4. 如果有，请列出引用的内容以及参考的资料
 5. 意见+建议（可选）
 
-> **助教の温馨提示**
+> **关于实验报告**
 >
 > 实验报告是用来判断你是否 **独立思考** 来解决本次 Lab 的。
 >
@@ -136,7 +139,7 @@ git push
 
 > **反卷斗士の承诺**
 >
-> 实验过程非抄袭的同学，实验报告部分赋满分。
+> 实验过程非抄袭的同学，实验报告部分赋满分。一旦发现抄袭，则零分处理。
 
 
 
@@ -192,7 +195,7 @@ git push
 
 `objdump --help` 会打印出 objdump 的所有用法，并且会给出精简的解释。`man objdump` 会打印出详尽的解释。
 
-> **助教の温馨提示**
+> **关于 objdump**
 >
 > 你可以尝试在 `objdump` 后加上 `-D` 和/或 `-x` 和/或 `-C`，就像上面出现的 `-d` 一样。你可以通过搜索或读文档的方式了解这会导致什么后果；TA 相信这几个参数会对你的实验有很大帮助！
 
@@ -296,7 +299,7 @@ int recursion(int x){ // 求斐波那契数
 push   %rbp                       # 保存 rbp
 push   %rbx                       # 保存 ebx
 mov    %edi,%ebx                  # 保存第一个参数 x，因为 x 和 rdi 寄存器后续函数都要使用，因此将 x 保存在新的寄存器中（这里是 ebx），防止后续的函数将 rdi 中存放的 x 覆盖掉，而 ebx 因为是 callee-save，因此提前保存了它
-cmp    $0x1,%edi                 
+cmp    $0x1,%edi
 jle    1258 <recursion(int)+0x2c> # 小于等于 1 则跳转，相当于 x < 2
 lea    -0x1(%rdi),%edi            # x-1
 callq  122c <recursion(int)>      # recursion(x-1)
@@ -328,7 +331,7 @@ typedef struct {
 ```assembly
 mov    $0x8,%edi                            
 callq  1090 <operator new(unsigned long)@plt>  # 申请了 8 个字节的空间
-mov    %rax,%rbx				                       # 保存该空闲空间的起始地址，即指向对象的指针
+mov    %rax,%rbx                               # 保存该空闲空间的起始地址，即指向对象的指针
 mov    %rax,%rdi
 callq  158c <B::B()>                           # 调用初始化函数，进行初始化，第一个参数为空闲空间的起始地址，即指向对象的指针 this
                                                # 对象已经创建好
@@ -352,11 +355,11 @@ callq  *%rdx                                   # 调用 rdx 位置处的函数�
 既然 stdin 和 stdout 也是**文件流**，那么我们当然可以把他们**重定向**到一个普通文件！我们让一个文件被定向到一个程序的标准输入，或者让一个程序的标准输出定向到一个文件当中。前者我们使用 `< file`，后者我们使用 `> file`，如下所示：
 
 ```sh
-$ echo hello > hello.txt  # 把stdout重定向到hello.txt中
+$ echo hello > hello.txt  		 # 把stdout重定向到hello.txt中
 $ cat hello.txt
 hello
 
-$ cat < hello.txt    # 把hello.txt重定向到cat的标准输入
+$ cat < hello.txt    					 # 把hello.txt重定向到cat的标准输入
 hello
 
 $ cat < hello.txt > hello2.txt # 同时重定向cat的标准输入和标准输出
@@ -406,9 +409,7 @@ world
 $ cat password.txt - | ./bomb
 ```
 
-> **助教の温馨提示**
->
-> 使用这种操作时注意，由于 Bomb++ 每一阶段都会重新读取一行，所以文件结尾多出的换行符会导致 Bomb++ 下一阶段读到一个寂寞，从而导致炸弹爆炸。因此，在存放口令的文本文件中，在最后一个口令输入完毕后，只能有一个空行。
+使用这种操作时注意，由于 Bomb++ 每一阶段都会重新读取一行，所以文件结尾多出的换行符会导致 Bomb++ 下一阶段读到一个寂寞，从而导致炸弹爆炸。因此，你的口令文件的末尾，应该**有且仅有**一个空行。
 
 > **文件拓展名**
 >
@@ -422,7 +423,7 @@ $ cat password.txt - | ./bomb
 
 `endbr64`：一种用于防御 ROP（Return Oriented Programming）攻击的机制 —— CET（Control-flow Enforcement）的一部分，但大多的 CPU 现在还没有实装，因此它们执行到这条指令时会直接略过。本次实验并不涉及相关的内容，你也可以直接略过。~~如果对二进制漏洞攻防感兴趣，大家也可以关注信息网络安全协会的相关活动。~~
 
-如果遇到其他没见过的汇编指令，我们建议自己查询互联网。如果你有钻研的精神，欢迎你试着查询 Intel 的官方手册 [英特尔® 64 位和 IA-32 架构开发人员手册](https://www.intel.cn/content/www/cn/zh/architecture-and-technology/64-ia-32-architectures-software-developer-vol-1-manual.html)，真正理解这个指令的细节。在查询这种奇厚无比的手册时，请一定记得利用好目录以及搜索功能。
+如果遇到其他没见过的汇编指令，我们建议自己查询互联网。如果你有钻研的精神，欢迎你试着查询 Intel 的官方手册 [英特尔® 64 位和 IA-32 架构开发人员手册](https://www.intel.cn/content/www/cn/zh/architecture-and-technology/64-ia-32-architectures-software-developer-vol-1-manual.html)（5000 行），真正理解这个指令的细节。在查询这种奇厚无比的手册时，请一定记得利用好目录以及搜索功能。
 
 
 
