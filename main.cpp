@@ -55,8 +55,7 @@ int main()
     memset(&secret_key, 0, sizeof(secret_key));
 
     // configure
-    std::map<std::string, std::string> config = readConfig("config.txt");
-    int jumpMode = std::stoi(config["jump_mode"]);
+    auto [config, testPhases] = readConfig("config.txt"); 
     bool storyMode = (config["story_mode"] == "true");
     std::string studentID = config["student_id"];
 
@@ -69,63 +68,76 @@ int main()
         display_prologue();
     printf(BLUE "You have 6 phases with which to blow yourself up. Have a nice day!" RESET "\n");
 
-    switch (jumpMode)
-    {
-        case 1:
-            printf(BLUE "PHASE 1..." RESET);
-            read_line(input);
-            phase_1(input);
-            printf(BLUE "Phase 1 defused. How about the next one?" RESET);
-            if (storyMode)
-                display_phase_1_story();
+    for (int phase : testPhases) {
+        switch (phase)
+        {
+            case 1:
+                printf(BLUE "PHASE 1..." RESET);
+                read_line(input);
+                phase_1(input);
+                printf(BLUE "Phase 1 defused. How about the next one?" RESET);
+                score += 13;
+                if (storyMode)
+                    display_phase_1_story();
+                break;
 
-        case 2:
-            printf(BLUE "PHASE 2..." RESET);
-            read_line(input);
-            phase_2(input);
-            printf(BLUE "That's number 2. Keep going!" RESET);
-            if (storyMode)
-                display_phase_2_story();
+            case 2:
+                printf(BLUE "PHASE 2..." RESET);
+                read_line(input);
+                phase_2(input);
+                printf(BLUE "That's number 2. Keep going!" RESET);
+                score += 13;
+                if (storyMode)
+                    display_phase_2_story();
+                break;
 
-        case 3:
-            printf(BLUE "PHASE 3..." RESET);
-            read_line(input);
-            phase_3(input);
-            printf(BLUE "Halfway there!" RESET);
-            if (storyMode)
-                display_phase_3_story();
+            case 3:
+                printf(BLUE "PHASE 3..." RESET);
+                read_line(input);
+                phase_3(input);
+                printf(BLUE "Halfway there!" RESET);
+                score += 13;
+                if (storyMode)
+                    display_phase_3_story();
+                break;
 
-        case 4:
-            printf(BLUE "PHASE 4..." RESET);
-            read_line(input);
-            phase_4(input);
-            printf(BLUE "So you got that one. Try this one." RESET);
-            if (storyMode)
-                display_phase_4_story();
+            case 4:
+                printf(BLUE "PHASE 4..." RESET);
+                read_line(input);
+                phase_4(input);
+                printf(BLUE "So you got that one. Try this one." RESET);
+                score += 13;
+                if (storyMode)
+                    display_phase_4_story();
+                break;
 
-        case 5:
-            printf(BLUE "PHASE 5..." RESET);
-            read_line(input);
-            phase_5(input);
-            printf(BLUE "Good work! On to the next..." RESET);
-            if (storyMode)
-                display_phase_5_story();
+            case 5:
+                printf(BLUE "PHASE 5..." RESET);
+                read_line(input);
+                phase_5(input);
+                printf(BLUE "Good work! On to the next..." RESET);
+                score += 13;
+                if (storyMode)
+                    display_phase_5_story();
+                break;
 
-        case 6:
-            printf(BLUE "PHASE 6..." RESET);
-            read_line(input);
-            phase_6(input);
-            printf(BLUE "Cool! your skill on Reverse Engineer is great." RESET);
-            if (storyMode)
-                display_phase_6_story();
-            break;
+            case 6:
+                printf(BLUE "PHASE 6..." RESET);
+                read_line(input);
+                phase_6(input);
+                printf(BLUE "Cool! your skill on Reverse Engineer is great." RESET);
+                score += 13;
+                if (storyMode)
+                    display_phase_6_story();
+                break;
 
-        default:
-            printf(RED "Invalid jump mode! Please set jump_mode between 1 and 6." RESET "\n");
-            exit(1);
+            default:
+                printf(RED "Invalid jump mode! Please set jump_mode between 1 and 6." RESET "\n");
+                exit(1);
+        }
     }
 
-    if (jumpMode == 1)
+    if (testPhases = [1, 2, 3, 4, 5, 6])
         printf(BLUE "Congratulations!" RESET "\n");
 
     if (storyMode)
@@ -142,11 +154,14 @@ int main()
         secret_phase(input);
 
         printf("You are really a Master of Reverse Engineer!");
+        score += 13;
         true_ending();
         
         if (storyMode)
             display_secret_ending();
     }
+
+    void print_score();
 
     return 0;
 }

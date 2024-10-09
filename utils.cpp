@@ -24,10 +24,11 @@ void explode_bomb() {
     exit(1);
 }
 
-std::map<std::string, std::string> readConfig(const std::string& filename)
+std::pair<std::map<std::string, std::string>, std::vector<int> > readConfig(const std::string& filename)
 {
     std::ifstream configFile(filename);
     std::map<std::string, std::string> config;
+    std::vector<int> testPhases;  // 存储解析后的 test_phase 阶段
     std::string line;
 
     if (configFile.is_open()) {
@@ -43,14 +44,22 @@ std::map<std::string, std::string> readConfig(const std::string& filename)
             value.erase(0, value.find_first_not_of(" \t"));
             value.erase(value.find_last_not_of(" \t") + 1);
 
-            config[key] = value;
+            if (key == "test_phase") {
+                std::stringstream ss(value);
+                std::string item;
+                while (std::getline(ss, item, ',')) {
+                    testPhases.push_back(std::stoi(item));  // 将 test_phase 字符串解析为整数列表
+                }
+            } else {
+                config[key] = value;
+            }
         }
         configFile.close();
     } else {
         printf("Unable to open config file: %s", filename.c_str());
     }
 
-    return config;
+    return std::make_pair(config, testPhases);  // 返回 config 和 test_phases
 }
 
 // put a string to stdout, one character at a time, interval 0.1s
@@ -98,4 +107,9 @@ void read_six_numbers(char *buf, int *nums)
 void true_ending()
 {
     puts("You have successfully defused the bomb!");
+}
+
+void print_score()
+{
+    printf("Your score: %d\n", score);
 }

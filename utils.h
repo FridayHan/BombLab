@@ -4,12 +4,15 @@
 #include <string>
 #include <fstream>
 
-std::map<std::string, std::string> readConfig(const std::string&);
+int score = 0;
+
+std::pair<std::map<std::string, std::string>, std::vector<int> > readConfig(const std::string& filename)
 extern "C" void read_line(char*);
 extern "C" void slow_put(const char*);
 extern "C" void slow_slow_put(const char*);
 extern "C" void read_six_numbers(char *, int *);
 extern "C" void explode_bomb();
 extern "C" void true_ending();
+void print_score();
 
 #endif // UTILS_H
