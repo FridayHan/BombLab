@@ -148,10 +148,12 @@ int main()
 
     if (secret_key) {
         slow_put(BLUE "Welcome to the secret phase of Bomb++!\n" RESET);
-        slow_put("The hidden truth is slowly coming to light...\n");
-        slow_put("* (It fills you with " GREEN);
-        slow_slow_put("DETERMINATION");
-        slow_put(RESET ")\n");
+        if (storyMode) {
+            slow_put("The hidden truth is slowly coming to light...\n");
+            slow_put("* (It fills you with " GREEN);
+            slow_slow_put("DETERMINATION");
+            slow_put(RESET ")\n");
+        }
 
         read_line(input);
         secret_phase(input);
