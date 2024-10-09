@@ -100,7 +100,7 @@ void display_secret_ending() {
     slow_slow_put("......");
     slow_slow_put("yyyyyy");
     slow_put("yyyyyyyyyyyyyyyyyyyy\n");
-    slow_slow_put("Welcome to the world of CTF!!!!!!\n");
+    slow_put("Welcome to the world of CTF!!!!!!\n");
 
     printf(YELLOW "\n*** The End ***\n" RESET);
 }

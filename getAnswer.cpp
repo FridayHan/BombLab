@@ -6,7 +6,10 @@
 void get_1_answer() {
     phase_1_offset = 215 - ID_hash % 10;
     char* answer = phase_1_str + phase_1_offset;
-    printf("%s\n", answer);
+    printf("%s", answer);
+    for (int i = 0; i < 80; ++i)
+        printf(" ");
+    printf("\n");
 }
 
 void get_2_answer() {
@@ -56,8 +59,6 @@ void get_5_answer() {
 
 void get_6_answer_with_secret() {
     printf("4 4 4 4 4 4");
-    for (int i = 0; i < 110; ++i)
-        printf(" ");
     printf("\n");
 }
 
@@ -67,7 +68,7 @@ int main() {
     bool storyMode = (config["story_mode"] == "true");
     std::string studentID = config["student_id"];
     phase_0(studentID);
-    printf("%d\n\n", ID_hash);
+    // printf("%d\n\n", ID_hash);
     // printf("phase_1 answer: \n");
     get_1_answer();
     // printf("phase_2 answer: \n");

@@ -38,12 +38,22 @@ std::pair<std::map<std::string, std::string>, std::vector<int>> readConfig(const
 
     if (configFile.is_open()) {
         while (std::getline(configFile, line)) {
-            if (line.empty() || line[0] == '#') continue;
+            // 去除行尾的注释
+            size_t commentPos = line.find('#');
+            if (commentPos != std::string::npos) {
+                line = line.substr(0, commentPos);
+            }
+
+            // 如果行为空或去掉注释后为空，跳过该行
+            if (line.empty()) continue;
 
             size_t delimiterPos = line.find("=");
+            if (delimiterPos == std::string::npos) continue;  // 如果没有找到等号，跳过该行
+
             std::string key = line.substr(0, delimiterPos);
             std::string value = line.substr(delimiterPos + 1);
 
+            // 去除 key 和 value 两端的空白字符
             key.erase(0, key.find_first_not_of(" \t"));
             key.erase(key.find_last_not_of(" \t") + 1);
             value.erase(0, value.find_first_not_of(" \t"));
@@ -53,7 +63,27 @@ std::pair<std::map<std::string, std::string>, std::vector<int>> readConfig(const
                 std::stringstream ss(value);
                 std::string item;
                 while (std::getline(ss, item, ',')) {
-                    testPhases.push_back(std::stoi(item));  // 将 test_phase 字符串解析为整数列表
+                    item.erase(0, item.find_first_not_of(" \t"));
+                    item.erase(item.find_last_not_of(" \t") + 1);
+                    int phase = std::stoi(item);
+                    testPhases.push_back(phase);  // 将 test_phase 字符串解析为整数列表
+                }
+
+                // 检查 testPhases 是否是1-6的子集，且顺序递增，最多6个
+                if (testPhases.size() > 6) {
+                    printf("Error: test_phase contains more than 6 phases.\n");
+                    return std::make_pair(config, std::vector<int>{});  // 返回空的 testPhases 表示错误
+                }
+
+                for (unsigned long i = 0; i < testPhases.size(); ++i) {
+                    if (testPhases[i] < 1 || testPhases[i] > 6) {
+                        printf("Error: test_phase contains invalid phase number: %d. Valid range is 1 to 6.\n", testPhases[i]);
+                        return std::make_pair(config, std::vector<int>{});  // 返回空的 testPhases 表示错误
+                    }
+                    if (i > 0 && testPhases[i] <= testPhases[i - 1]) {
+                        printf("Error: test_phase is not in strictly increasing order.\n");
+                        return std::make_pair(config, std::vector<int>{});  // 返回空的 testPhases 表示错误
+                    }
                 }
             } else {
                 config[key] = value;
@@ -66,6 +96,7 @@ std::pair<std::map<std::string, std::string>, std::vector<int>> readConfig(const
 
     return std::make_pair(config, testPhases);  // 返回 config 和 test_phases
 }
+
 
 // put a string to stdout, one character at a time, interval 0.1s
 void slow_put(const char* str)

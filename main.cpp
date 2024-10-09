@@ -1,5 +1,5 @@
 /*
- *  FDU's Bomb++, Version 3.6
+ *  FDU's Bomb++, Version 3.7
  *  Copyright 2024, FDU ICS2024. All rights reserved.
  *  
  *  LICENSE:
