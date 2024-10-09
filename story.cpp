@@ -55,7 +55,7 @@ void display_phase_5_story() {
 
 void display_phase_6_story() {
     printf(YELLOW "\n[Phase 6 Story]\n" RESET);
-    printf("In the final segment of the code, you uncover a shocking revelation: the term 'Central Intelligence Entity' appears —- despite the fact that this concept wasn’t introduced until 2030.\n");
+    printf("In the final segment of the code, you uncover a shocking revelation: the term 'Central Intelligence Entity' appears —- despite the fact that this concept wasn't introduced until 2030.\n");
     printf("This can't be a coincidence. Something is terribly wrong...\n\n");
 }
 
