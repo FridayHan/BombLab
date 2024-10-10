@@ -96,7 +96,7 @@ Secret. ████
 
 ### 内容要求
 
-在项目的**根目录**下，需要有**实验报告** `lab2_<学号>.pdf`（要求转为 pdf 格式）以及**正确口令** `password.txt`。注意，`password.txt` 需要满足可以用重定向秒杀 bomb++ 的要求（我们会在后面介绍什么是重定向），我们会用这个来判断你通过了几关。
+在项目的**根目录**下，需要有**实验报告** `lab2_<学号>.pdf`（要求转为 pdf 格式）、**正确口令** `password.txt`以及**配置文件**`config.txt`。注意，`password.txt` 需要满足可以用重定向秒杀 bomb++ 的要求（我们会在后面介绍什么是重定向），我们会用这个来判断你通过了几关。
 
 你的实验报告应包含以下内容：
 
@@ -104,7 +104,7 @@ Secret. ████
 2. 每个关卡的推演过程（重点），如你推测的函数的功能
 3. 拆弹成功的截图（请关闭剧情模式进行截图）
 4. 如果有，请列出引用的内容以及参考的资料
-5. 意见+建议（可选）
+5. 意见 + 建议（可选）
 
 > **关于实验报告**
 >
@@ -118,7 +118,7 @@ Secret. ████
 
 ```shell
 # 注：需要在仓库的根目录进行操作
-git add password.txt lab2_<学号>.pdf
+git add password.txt lab2_<学号>.pdf config.txt
 # e.g. git add password.txt lab2_23307130000.pdf
 git commit -m "xxx(可以是你的提交注释)"
 # 将暂存区的所有更改提交到本地仓库
@@ -193,13 +193,15 @@ git push
 
 #### 反汇编
 
-我们回顾一下C程序的编译过程：源代码 -> 汇编代码 -> 机器码，中间两步分别称为**编译**与**汇编**。
+我们回顾一下 C 程序的编译过程：源代码 -> 汇编代码 -> 机器码，中间两步分别称为**编译**与**汇编**。
 
 在源代码到汇编代码的过程中，编译器作了许多的优化、也删去了很多源代码中的信息，比如局部变量名等等……而汇编代码和机器码则是几乎等价的，汇编语言是机器码的助记符。
 
 因此，有工具能帮我们将可执行文件中的机器码转化为汇编代码也就不足为奇了，这种工具被称为**反汇编器**。至于汇编代码到源代码，这种工具也存在，但由于本次实验旨在帮助大家熟悉汇编代码，因此在本次实验中我们不会介绍它们。我们这里介绍一个非常经典且常用的反汇编器——objdump。
 
 我们在命令行中输入 `objdump -d ./bomb > bomb.S` 就可以获得反汇编文件 `bomb.S`。
+
+如果你直接反汇编整个 bomb++ 文件，会发现得到非常长的汇编。这里推荐在 `objdump` 时，加入参数 `--disassemble=<function_name>`，可以输出对应函数的汇编代码。例如：`objdump -d --disassemble=phase_5 ./bomb++ > phase_5.S`，会将 `phase_5` 这一函数的汇编代码放入 `phase_5.S` 中。
 
 `objdump --help` 会打印出 objdump 的所有用法，并且会给出精简的解释。`man objdump` 会打印出详尽的解释。
 
@@ -243,7 +245,7 @@ if (array == 0) return;
 ```assembly
 endbr64 
 test   %rdi,%rdi                       # 让函数第一个参数和自己作与运算
-je     11cb <for_sum(int*, int)+0x22>  # 若结果为 0，则跳转；相当于判断参数是否为 0，为 0 则跳转     
+je     11cb <for_sum(int*, int)+0x22>  # 若结果为 0，则跳转；相当于判断参数是否为 0，为 0 则跳转
 ```
 
 ##### 循环结构
@@ -363,14 +365,14 @@ callq  *%rdx                                   # 调用 rdx 位置处的函数�
 既然 stdin 和 stdout 也是**文件流**，那么我们当然可以把他们**重定向**到一个普通文件！我们让一个文件被定向到一个程序的标准输入，或者让一个程序的标准输出定向到一个文件当中。前者我们使用 `< file`，后者我们使用 `> file`，如下所示：
 
 ```sh
-$ echo hello > hello.txt  		 # 把stdout重定向到hello.txt中
+$ echo hello > hello.txt  		 # 把 stdout 重定向到 hello.txt 中
 $ cat hello.txt
 hello
 
-$ cat < hello.txt    					 # 把hello.txt重定向到cat的标准输入
+$ cat < hello.txt    					 # 把 hello.txt 重定向到 cat 的标准输入
 hello
 
-$ cat < hello.txt > hello2.txt # 同时重定向cat的标准输入和标准输出
+$ cat < hello.txt > hello2.txt # 同时重定向 cat 的标准输入和标准输出
 $ cat hello2.txt
 hello
 ```
@@ -391,7 +393,7 @@ ESCHER
 BACH
 ```
 
-利用这两种操作，我们可以方便地处理BombLab的输入。我们知道 `cat` 是打开文件，也知道标准输入同样也是一个文件，因此我们可以用 `cat -` 打开标准输入文件，这时候 `cat` 就相当于一个 `echo`，可以复读我们说的话：
+利用这两种操作，我们可以方便地处理 BombLab 的输入。我们知道 `cat` 是打开文件，也知道标准输入同样也是一个文件，因此我们可以用 `cat -` 打开标准输入文件，这时候 `cat` 就相当于一个 `echo`，可以复读我们说的话：
 
 ```sh
 $ cat -
@@ -441,7 +443,7 @@ $ cat password.txt - | ./bomb
 - 本实验参考 22、23 年的实验开发
 - [从汇编角度学习 C/C++ - 看雪](https://bbs.kanxue.com/homepage-category-835440-293.htm)
 
-
+<div style="page-break-after: always;"></div>
 
 ## 八、实验彩蛋
 
