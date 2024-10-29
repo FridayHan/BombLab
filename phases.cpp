@@ -295,12 +295,12 @@ extern "C" void stack_pop(node*& ptr) {
 extern "C" node* build_stack() {
     stackBottom.next = &initialNodes[0];
     stackTop.prev = &initialNodes[5];
-    return stackBottom;
+    return stackTop.prev; // the real top of the stack
 }
 
 extern "C" bool check_answer() {
     node* curr = stackBottom.next;
-    for (; curr != stackTop; curr = curr->next) {
+    for (; curr != &stackTop; curr = curr->next) {
         if (curr->val < curr->prev->val) { // prev > curr, BOOM; need: prev <= curr
             return false;
         }

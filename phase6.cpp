@@ -9,7 +9,7 @@
  * 3. maintain_monotonic_sequence 的参数应该是引用，否则不会改外面那个指针
  * 4. maintain_monotonic_sequence 中的 while 条件更是错的离谱。不该是 ||，应该是 &&
  * 5. 实际上 maintain_monotonic_sequence 的 while 改对后，也不需要再和那个虚假栈底比大小了
- * 6. check_answer 没用上，不过里面的 for 也是错的，应该是 != stackTop，到栈顶为止，比较六个元素（因为有 stackBottom 垫着，不会超出去）
+ * 6. check_answer 没用上，不过里面的 for 也是错的（还好没用上），应该是 != stackTop，到栈顶为止，比较六个元素（因为有 stackBottom 垫着，不会超出去）
  * （可能还有别的，数不动了。原本我还一直以为没问题的，直到有人来详细问这题在干什么。。。）
  * 
  * 对这题竟然最后效果和想象中一样深感震惊。
