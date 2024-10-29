@@ -269,12 +269,12 @@ node stackBottom = {4, nullptr, nullptr};
 node stackTop = {0, nullptr, nullptr};
 
 node initialNodes[STACK_SIZE] = {
-        {2, &stackBottom, &initialNodes[1]},        // 0
-        {4, &initialNodes[1], &initialNodes[3]},    // 1
-        {8, &initialNodes[2], &initialNodes[4]},    // 2
-        {16, &initialNodes[3], &initialNodes[5]},    // 3
-        {32, &initialNodes[4], &initialNodes[6]},    // 4
-        {64, &initialNodes[5], &stackTop}            // 5
+        {0x10, &stackBottom, &initialNodes[1]},         // 0
+        {0x20, &initialNodes[0], &initialNodes[2]},     // 1
+        {0x40, &initialNodes[1], &initialNodes[3]},     // 2
+        {0x80, &initialNodes[2], &initialNodes[4]},     // 3
+        {0x100, &initialNodes[3], &initialNodes[5]},    // 4
+        {0x200, &initialNodes[4], &stackTop}            // 5
 };
 
 extern "C" int get_stack_top(node*& ptr) {
@@ -282,45 +282,42 @@ extern "C" int get_stack_top(node*& ptr) {
     return val;
 }
 
-extern "C" void stack_push(node*& ptr, int val) {
+extern "C" void stack_push(node*& ptr, int val) { // ptr points to the top of the stack
+    ptr = ptr->next; // the next node is the new top
     ptr->val = val;
-    ptr = ptr->next;
 }
 
 extern "C" void stack_pop(node*& ptr) {
+    ptr->val = 0;
     ptr = ptr->prev;
 }
 
 extern "C" node* build_stack() {
     stackBottom.next = &initialNodes[0];
     stackTop.prev = &initialNodes[5];
-    return stackBottom.next;
+    return stackBottom;
 }
 
 extern "C" bool check_answer() {
     node* curr = stackBottom.next;
-    for (; curr != stackTop.prev; curr = curr->next) { // the first 5 nodes
+    for (; curr != stackTop; curr = curr->next) {
         if (curr->val < curr->prev->val) { // prev > curr, BOOM; need: prev <= curr
-            return 0;
+            return false;
         }
     }
-    return 1;
+    return true;
 }
 
-extern "C" bool maintain_monotonic_sequence(node* ptr, int val) {
-    if (stackBottom.val > val) { // val needs to be larger than stackBottom.val(3)
-        return false;
-    }
-    while (ptr != &stackBottom || ptr->val > val) {
+extern "C" void maintain_monotonic_sequence(node*& ptr, int val) {
+    while (ptr != &stackBottom && ptr->val > val) {
         stack_pop(ptr); // pop until ptr == stackBottom or ptr->val <= val
     }
     stack_push(ptr, val);
-    return true;
 }
 
 void phase_6(char* input) { // ans: 4 4 4 4 4 4 (or any increasing sequence with the first element >= 4)
     read_six_numbers(input, phase_6_nums.nums);
-    // printf("Valid Input\n");
+
     int* nums = phase_6_nums.nums;
     for (int i = 0; i < PHASE6_INPUT_LEN; ++i) {
         if (nums[i] > 6 || nums[i] < 0) { // check: 0 <= nums[h] <= 6
@@ -328,12 +325,11 @@ void phase_6(char* input) { // ans: 4 4 4 4 4 4 (or any increasing sequence with
         }
     }
 
-    bool valid = true;
     node* stackPtr = build_stack();
     for (int i = 0; i < PHASE6_INPUT_LEN; ++i) {
-        valid &= maintain_monotonic_sequence(stackPtr, nums[i]);
+        maintain_monotonic_sequence(stackPtr, nums[i]);
     }
-    if (!valid) {
+    if (!check_answer()) {
         explode_bomb();
     }
 }
